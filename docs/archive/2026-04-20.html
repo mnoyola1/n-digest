@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Apr 20 • OpenAI Agents SDK Gets Sandboxes</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0066cc;
+    font-weight: 700;
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0 0 22px;
+  }
+  .meta a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .meta a:hover { text-decoration: underline; }
+  .quick-hits {
+    margin: 0;
+    padding: 0 0 0 18px;
+  }
+  .quick-hits li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+    margin-bottom: 9px;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .deeper {
+    background: #f5f5f7;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .deeper h3.headline { margin-bottom: 6px; }
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #0066cc; text-decoration: none; }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7; }
+    .eyebrow, .date, .footer, .quick-hits .src { color: #8e8e93; }
+    p.why, .quick-hits li { color: #d1d1d6; }
+    .quick-hits li a { color: #f5f5f7; }
+    h2 { color: #4aa3ff; border-bottom-color: #2c2c2e; }
+    .meta a, .footer a { color: #4aa3ff; }
+    .deeper { background: #2c2c2e; }
+    .footer { border-top-color: #2c2c2e; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">OpenAI&#39;s Agents SDK adds native sandbox execution and a model harness for long-running agents.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">OpenAI Agents SDK Gets Sandboxes</h1>
+      <p class="date">Monday, April 20, 2026</p>
+
+      <h2>What Matters Today</h2>
+        <h3 class="headline"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI Agents SDK adds native sandboxes and a long-running agent harness</a></h3>
+        <p class="why">This is a direct input to your Noyola Hub architecture decisions and any CrewAI vs. vendor-SDK comparison for Con Ed pilots. Native sandboxing reduces the custom plumbing needed for safe tool use on billing and CCB workflows. Worth benchmarking against your current Claude API plus FastAPI setup before committing roadmap slots.</p>
+        <p class="meta"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI</a> &middot; 3 min read</p>
+        <h3 class="headline"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Headless everything: Salesforce exposes full platform as APIs and MCP</a></h3>
+        <p class="why">Benioff pitching Agentforce and Slack as headless APIs and MCP endpoints is a preview of how Oracle CCB and Fusion AI Agent Studio will likely be consumed by agents. For Con Ed this reframes vendor evaluation around API and MCP surface area, not GUI workflows. It also signals pricing pressure on per-seat SaaS that your procurement team should track.</p>
+        <p class="meta"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Simon Willison</a> &middot; 3 min read</p>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15877">Paper unifies agent memory, skills, and rules on a compression spectrum</a></h3>
+        <p class="why">Positions episodic memory, procedural skills, and declarative rules as points on one compression axis, with concrete ratios for context and latency tradeoffs. This is the framework you need for Noyola Hub as sessions get longer and for any Con Ed agent that has to retain policy across thousands of billing cases. Useful vocabulary for governance reviews too.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.15877">arXiv cs.AI</a> &middot; 4 min read</p>
+
+      <h2>Quick Hits</h2>
+      <ul class="quick-hits">
+        <li><a href="https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything">Claude Opus 4.7 Tokenizer Change: same input now maps to 1.0-1.35x more tokens, recheck cost models.</a> <span class="src">&middot; Simon Willison</span></li>
+        <li><a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything">Opus 4.6 To 4.7 System Prompt Diff: Simon Willison&#39;s git-style comparison of Anthropic&#39;s published prompts.</a> <span class="src">&middot; Simon Willison</span></li>
+        <li><a href="https://huggingface.co/papers/2604.15804">Qwen3.5-Omni Technical Report: 256k context, MoE, claims parity with Gemini 3.1 Pro on audio-visual.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15334">Conversational AI Tutors Over Video Lectures: N=58 pilot shows engagement gains, direct read for N Learn.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15336">Facial-Expression-Aware Tutor Prompting: prompt-level multimodal cues improve empathy without retraining.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15488">FineSteer Inference-Time Steering: two-stage framework for safety and hallucination control at serve time.</a> <span class="src">&middot; arXiv cs.LG</span></li>
+        <li><a href="https://arxiv.org/abs/2604.16175">MARCH Multi-Agent Radiology Hierarchy: resident/fellow/attending roles, a pattern for regulated billing QA.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15351">Aletheia Gradient-Guided LoRA: 15-28% training speedup by adapting only task-relevant layers.</a> <span class="src">&middot; arXiv cs.LG</span></li>
+      </ul>
+
+      <h2>Worth a Deeper Look This Week</h2>
+      <div class="deeper">
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15972">WORC: weak-link optimization for multi-agent reasoning</a></h3>
+        <p class="why">A two-stage framework that identifies and reinforces the lowest-performing agent in a crew rather than tuning the strongest. Directly relevant to how you structure CrewAI roles in Noyola Hub and how you would diagnose a Con Ed agent pipeline that keeps failing at one step. Worth a careful weekend read before your next architecture review.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.15972">arXiv cs.AI</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Apr 20, 2026 &middot; curated from 191 items reviewed
+      </div>
+    </div>
+  </div>
+</body>
+</html>
