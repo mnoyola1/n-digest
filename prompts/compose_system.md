@@ -37,6 +37,7 @@ Return ONLY a JSON object with this exact shape, no prose outside it:
   "what_matters_today": [
     {
       "item_id": "from the pool",
+      "category": "one of the category keys below",
       "headline": "one-sentence, <= 90 chars, declarative, no clickbait",
       "why_it_matters": "2-3 sentences (50-75 words), explicitly tied to Con Ed / N Learn / Claude Glasses / Noyola Hub / Oracle / vendor decisions / stack as appropriate",
       "read_time_min": 3
@@ -45,17 +46,37 @@ Return ONLY a JSON object with this exact shape, no prose outside it:
   "quick_hits": [
     {
       "item_id": "from the pool",
+      "category": "one of the category keys below",
       "line": "one line, <= 110 chars, title-cased headline plus a crisp fragment of context"
     }
   ],
   "deeper_look": {
     "item_id": "from the pool",
+    "category": "one of the category keys below",
     "headline": "one sentence",
     "pitch": "2-3 sentences explaining why this is worth saving for weekend reading",
     "read_time_min": 15
   }
 }
 ```
+
+# Category taxonomy (REQUIRED — every item gets exactly one)
+
+Pick the single best fit. If genuinely unclear, use `other`. Prefer the more specific key when two apply.
+
+| key | when to use |
+|---|---|
+| `enterprise_utilities` | Enterprise AI deployments, utility billing AI, customer ops automation, regulated-industry case studies, FERC/PUC matters. Reader's day job. |
+| `agentic` | Agents, multi-agent systems, CrewAI, LangGraph, AutoGen, A2A, MCP ecosystem, agent orchestration, production agent deployments. |
+| `oracle` | Anything Oracle: CCB, Fusion AI Agent Studio, Oracle Cloud AI, OCI, Oracle database + AI. |
+| `foundation_models` | Claude, GPT, Gemini, Llama, Qwen, Mistral, DeepSeek releases. Capability, pricing, API, context, tool use. Not benchmarks-only. |
+| `rpa_ai` | Power Automate AI, UiPath agents, Automation Anywhere, document AI, RPA + LLM convergence. |
+| `governance` | NIST AI RMF, NY State AI rules, EU AI Act, utility regulator AI guidance, procurement frameworks, AI policy. |
+| `dev_tools` | Claude Code, Cursor, MCP servers, new SDKs, eval frameworks, developer tooling for AI builders. |
+| `rag_prompt` | Production RAG, embeddings, prompt engineering techniques that actually improve systems. |
+| `edtech` | Adaptive learning, K-12 AI safety, learning science + AI, parental controls. Matters to N Learn. |
+| `wearable` | Meta Ray-Ban, Even Realities, smart glasses, on-device VLMs, voice-first interfaces. Matters to Claude Glasses. |
+| `other` | Doesn't fit any of the above. Use sparingly. |
 
 # Rules
 

@@ -19,6 +19,28 @@ log = logging.getLogger(__name__)
 DEFAULT_COMPOSE_MODEL = "claude-opus-4-7"
 
 
+VALID_CATEGORIES = {
+    "enterprise_utilities",
+    "agentic",
+    "oracle",
+    "foundation_models",
+    "rpa_ai",
+    "governance",
+    "dev_tools",
+    "rag_prompt",
+    "edtech",
+    "wearable",
+    "other",
+}
+
+
+def _normalize_category(value: Any) -> str:
+    if not isinstance(value, str):
+        return "other"
+    key = value.strip().lower().replace("-", "_").replace(" ", "_")
+    return key if key in VALID_CATEGORIES else "other"
+
+
 @dataclass
 class ComposedItem:
     item_id: str
@@ -27,6 +49,7 @@ class ComposedItem:
     source: str
     read_time_min: int
     body: str = ""  # for what_matters_today: why_it_matters; for deeper_look: pitch
+    category: str = "other"
 
 
 @dataclass
@@ -129,6 +152,7 @@ def compose(
             source=it.source,
             read_time_min=int(entry.get("read_time_min", 3)),
             body=entry.get(body_key, "").strip(),
+            category=_normalize_category(entry.get("category")),
         )
 
     what_matters = [
@@ -150,6 +174,7 @@ def compose(
             source=it.source,
             read_time_min=2,
             body="",
+            category=_normalize_category(entry.get("category")),
         ))
     quick_hits = quick_hits[:8]
 

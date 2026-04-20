@@ -59,15 +59,30 @@
     color: #6e6e73;
     margin: 0 0 24px;
   }
-  h2 {
+  h2.section {
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #0066cc;
+    color: #1d1d1f;
     font-weight: 700;
-    margin: 28px 0 14px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #e5e5ea;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
   }
   h3.headline {
     font-size: 17px;
@@ -93,22 +108,38 @@
   .meta {
     font-size: 12px;
     color: #6e6e73;
-    margin: 0 0 22px;
+    margin: 0;
   }
   .meta a {
-    color: #0066cc;
+    color: #6e6e73;
     text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
   }
-  .meta a:hover { text-decoration: underline; }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
   .quick-hits {
+    list-style: none;
     margin: 0;
-    padding: 0 0 0 18px;
+    padding: 0;
   }
   .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
     font-size: 14px;
     line-height: 1.5;
     color: #333336;
-    margin-bottom: 9px;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
   }
   .quick-hits li a {
     color: #0a0a0a;
@@ -121,13 +152,31 @@
     font-size: 12px;
     font-weight: 400;
   }
+
+  /* --- deeper look --- */
   .deeper {
-    background: #f5f5f7;
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
     border-radius: 10px;
-    padding: 16px 18px;
-    margin-top: 6px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
   }
-  .deeper h3.headline { margin-bottom: 6px; }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
   .footer {
     font-size: 12px;
     color: #8a8a8e;
@@ -136,19 +185,26 @@
     border-top: 1px solid #e5e5ea;
     line-height: 1.5;
   }
-  .footer a { color: #0066cc; text-decoration: none; }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
 
   @media (prefers-color-scheme: dark) {
     body { background: #000; }
     .card { background: #1c1c1e; box-shadow: none; }
-    .title, h3.headline, h3.headline a { color: #f5f5f7; }
-    .eyebrow, .date, .footer, .quick-hits .src { color: #8e8e93; }
-    p.why, .quick-hits li { color: #d1d1d6; }
-    .quick-hits li a { color: #f5f5f7; }
-    h2 { color: #4aa3ff; border-bottom-color: #2c2c2e; }
-    .meta a, .footer a { color: #4aa3ff; }
-    .deeper { background: #2c2c2e; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
     .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
   }
 </style>
 </head>
@@ -160,25 +216,35 @@
       <h1 class="title">{{ subject_headline }}</h1>
       <p class="date">{{ date_long }}</p>
 
-      <h2>What Matters Today</h2>
+      <h2 class="section">What Matters Today</h2>
       {% for item in what_matters %}
-        <h3 class="headline"><a href="{{ item.url }}">{{ item.headline }}</a></h3>
-        <p class="why">{{ item.body }}</p>
-        <p class="meta"><a href="{{ item.url }}">{{ item.source }}</a> &middot; {{ item.read_time_min }} min read</p>
+        {% set c = categories[item.category] if item.category in categories else categories['other'] %}
+        <div class="story" style="border-left-color: {{ c.color }};">
+          <div class="tag" style="color: {{ c.color }};">{{ c.label }}</div>
+          <h3 class="headline"><a href="{{ item.url }}">{{ item.headline }}</a></h3>
+          <p class="why">{{ item.body }}</p>
+          <p class="meta"><a href="{{ item.url }}">{{ item.source }}</a> &middot; {{ item.read_time_min }} min read</p>
+        </div>
       {% endfor %}
 
       {% if quick_hits %}
-      <h2>Quick Hits</h2>
+      <h2 class="section">Quick Hits</h2>
       <ul class="quick-hits">
         {% for hit in quick_hits %}
-        <li><a href="{{ hit.url }}">{{ hit.headline }}</a> <span class="src">&middot; {{ hit.source }}</span></li>
+        {% set c = categories[hit.category] if hit.category in categories else categories['other'] %}
+        <li style="--dot: {{ c.color }};">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:{{ c.color }};"></span>
+          <a href="{{ hit.url }}">{{ hit.headline }}</a> <span class="src">&middot; {{ hit.source }}</span>
+        </li>
         {% endfor %}
       </ul>
       {% endif %}
 
       {% if deeper_look %}
-      <h2>Worth a Deeper Look This Week</h2>
-      <div class="deeper">
+      {% set c = categories[deeper_look.category] if deeper_look.category in categories else categories['other'] %}
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: {{ c.color }}; background: {{ c.tint }};">
+        <span class="pill" style="background: {{ c.color }};">Weekend Read</span>
         <h3 class="headline"><a href="{{ deeper_look.url }}">{{ deeper_look.headline }}</a></h3>
         <p class="why">{{ deeper_look.body }}</p>
         <p class="meta"><a href="{{ deeper_look.url }}">{{ deeper_look.source }}</a> &middot; ~{{ deeper_look.read_time_min }} min read</p>
