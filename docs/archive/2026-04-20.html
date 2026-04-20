@@ -59,15 +59,30 @@
     color: #6e6e73;
     margin: 0 0 24px;
   }
-  h2 {
+  h2.section {
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #0066cc;
+    color: #1d1d1f;
     font-weight: 700;
-    margin: 28px 0 14px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #e5e5ea;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
   }
   h3.headline {
     font-size: 17px;
@@ -93,22 +108,38 @@
   .meta {
     font-size: 12px;
     color: #6e6e73;
-    margin: 0 0 22px;
+    margin: 0;
   }
   .meta a {
-    color: #0066cc;
+    color: #6e6e73;
     text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
   }
-  .meta a:hover { text-decoration: underline; }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
   .quick-hits {
+    list-style: none;
     margin: 0;
-    padding: 0 0 0 18px;
+    padding: 0;
   }
   .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
     font-size: 14px;
     line-height: 1.5;
     color: #333336;
-    margin-bottom: 9px;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
   }
   .quick-hits li a {
     color: #0a0a0a;
@@ -121,13 +152,31 @@
     font-size: 12px;
     font-weight: 400;
   }
+
+  /* --- deeper look --- */
   .deeper {
-    background: #f5f5f7;
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
     border-radius: 10px;
-    padding: 16px 18px;
-    margin-top: 6px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
   }
-  .deeper h3.headline { margin-bottom: 6px; }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
   .footer {
     font-size: 12px;
     color: #8a8a8e;
@@ -136,57 +185,95 @@
     border-top: 1px solid #e5e5ea;
     line-height: 1.5;
   }
-  .footer a { color: #0066cc; text-decoration: none; }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
 
   @media (prefers-color-scheme: dark) {
     body { background: #000; }
     .card { background: #1c1c1e; box-shadow: none; }
-    .title, h3.headline, h3.headline a { color: #f5f5f7; }
-    .eyebrow, .date, .footer, .quick-hits .src { color: #8e8e93; }
-    p.why, .quick-hits li { color: #d1d1d6; }
-    .quick-hits li a { color: #f5f5f7; }
-    h2 { color: #4aa3ff; border-bottom-color: #2c2c2e; }
-    .meta a, .footer a { color: #4aa3ff; }
-    .deeper { background: #2c2c2e; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
     .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
   }
 </style>
 </head>
 <body>
-  <span class="preheader">OpenAI&#39;s Agents SDK adds native sandbox execution and a model-native harness for long-running agents.</span>
+  <span class="preheader">OpenAI&#39;s Agents SDK adds native sandbox execution, Salesforce goes headless, and a weak-link framework rethinks multi-agent reliability.</span>
   <div class="wrap">
     <div class="card">
       <p class="eyebrow">AI Digest</p>
       <h1 class="title">OpenAI Agents SDK Gets Sandboxing</h1>
       <p class="date">Monday, April 20, 2026</p>
 
-      <h2>What Matters Today</h2>
-        <h3 class="headline"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI Agents SDK adds native sandbox execution and model-native harness</a></h3>
-        <p class="why">Sandboxed, long-running agents across files and tools is exactly the shape you need for billing automation pilots where RPA currently brokers risky actions. Worth evaluating against your CrewAI and Noyola Hub stack before you commit deeper to either. If OpenAI&#39;s harness standardizes tool contracts, it changes how you pitch governance to Con Ed procurement.</p>
-        <p class="meta"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI</a> &middot; 3 min read</p>
-        <h3 class="headline"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Headless services and API-first agents challenge per-seat SaaS pricing</a></h3>
-        <p class="why">Benioff pushing Salesforce Headless 360 confirms what you already bet on with Noyola Hub: agents want APIs and MCP, not GUIs. For Oracle CCB and Fusion Agent Studio conversations, this is ammunition to demand real headless surfaces rather than screen-scrape RPA. It also reshapes how you model license costs when agents, not heads, do the work.</p>
-        <p class="meta"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Simon Willison</a> &middot; 3 min read</p>
-        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15559">Unsafe agent behaviors transfer subliminally through distillation</a></h3>
-        <p class="why">The paper shows a teacher with a deletion bias passes destructive tool-use habits to students through supposedly safe trajectories. For your Con Ed governance framework and N Learn safety reviews, this is a concrete reason to require provenance on any distilled agent and to test for latent destructive actions, not just output quality. Bring this into your next vendor risk checklist.</p>
-        <p class="meta"><a href="https://arxiv.org/abs/2604.15559">arXiv cs.AI</a> &middot; 4 min read</p>
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI Agents SDK adds native sandbox execution and model-native harness</a></h3>
+          <p class="why">Sandboxed, long-running agents are exactly what you need for CCB-adjacent automations where a rogue tool call could hit a customer account. Worth comparing the harness primitives against your current CrewAI + n8n setup in Noyola Hub before the next vendor review, especially for governance sign-off on file and tool access boundaries.</p>
+          <p class="meta"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #059669;">
+          <div class="tag" style="color: #059669;">Developer Tools</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Salesforce exposes Agentforce and Slack as headless APIs, MCP, and CLI</a></h3>
+          <p class="why">If Salesforce makes headless-for-agents table stakes, expect Oracle to follow with CCB and Fusion AI Agent Studio endpoints. Start asking your Oracle rep now about headless and MCP surfaces for CCB. This also reshapes per-seat pricing math for any RPA-to-agent migration you scope for the 16-person team.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Simon Willison</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2604.15972">WORC framework targets the weakest agent to stabilize multi-agent reasoning</a></h3>
+          <p class="why">Your CrewAI orchestrations fail the same way: one weak role drags the whole crew. WORC&#39;s two-stage identify-and-reinforce approach gives you a concrete pattern for Noyola Hub and for any billing-dispute or exception-handling crew where compounding agent errors turn into customer-facing mistakes. Worth a prototype this quarter.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2604.15972">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
 
-      <h2>Quick Hits</h2>
+      <h2 class="section">Quick Hits</h2>
       <ul class="quick-hits">
-        <li><a href="https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything">Claude Opus 4.7 Tokenizer Changes: same input now maps to 1.0-1.35x more tokens, recheck cost models.</a> <span class="src">&middot; Simon Willison</span></li>
-        <li><a href="https://huggingface.co/papers/2604.15804">Qwen3.5-Omni Released: 256k context, SOTA on 215 audio/AV benchmarks, matches Gemini 3.1 Pro.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15709">MCTS For Agent Skill Design: bilevel optimization of instructions, tools, and resources jointly.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15972">Weak-Link Optimization For Multi-Agent Systems: find and reinforce the bottleneck agent in CrewAI-style setups.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://huggingface.co/papers/2604.10261">Amazing Agent Race Benchmark: DAG tool chains expose agents as strong tool users but weak navigators.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15529">LACE Cross-Thread Attention: parallel reasoning paths share insights during inference instead of failing identically.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://arxiv.org/abs/2604.16175">MARCH Radiology Agents: resident/fellow/attending hierarchy pattern worth borrowing for regulated ops.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything">Claude Opus 4.7 Ships New Tokenizer: same input runs 1.0-1.35x more tokens, redo your cost models.</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://huggingface.co/papers/2604.15804">Qwen3.5-Omni Lands With 256k Context: SOTA on 215 audio/AV tasks, credible open alternative for voice-first work.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2604.15709">MCTS-Based Bilevel Skill Optimization: structured search over agent instructions, tools, and resources jointly.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://arxiv.org/abs/2604.15488">FineSteer Framework For Inference-Time Steering: cheaper lever than retraining for safety and hallucination control.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://arxiv.org/abs/2604.15336">Facial-Expression-Aware Tutoring Prompts: prompt-level multimodal cues for empathetic tutors, relevant to Niko.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://arxiv.org/abs/2604.15351">Aletheia Picks LoRA Layers By Gradient: 15-28% training speedup across 14 models, 0.5B to 72B.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2604.10261">Agents Strong At Tools, Weak At Navigation: new DAG benchmark exposes fork-merge chain failures.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
       </ul>
 
-      <h2>Worth a Deeper Look This Week</h2>
-      <div class="deeper">
-        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15877">Experience Compression Spectrum unifies agent memory, skills, and rules as one axis</a></h3>
-        <p class="why">This reframes three fragmented research communities (episodic memory, procedural skills, declarative rules) as points on a single compression axis, from 5x to 1000x+. For Noyola Hub and any long-running Con Ed agent, it gives you a principled way to decide what to store as memory vs compile into a skill vs promote to a rule. Good weekend read to reshape your orchestrator design doc.</p>
-        <p class="meta"><a href="https://arxiv.org/abs/2604.15877">arXiv cs.AI</a> &middot; ~18 min read</p>
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #db2777; background: #fdf2f8;">
+        <span class="pill" style="background: #db2777;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15951">Survey maps when and why to integrate graphs with LLMs and agents for reasoning and retrieval</a></h3>
+        <p class="why">This is the reference to save for a quiet Saturday. It categorizes graph-LLM integrations by purpose, graph modality, and strategy, which is directly useful when deciding how to structure CCB domain knowledge, billing dispute workflows, or N Learn curriculum graphs for retrieval. A clean mental model beats another point-solution paper.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.15951">arXiv cs.AI</a> &middot; ~18 min read</p>
       </div>
 
       <div class="footer">
