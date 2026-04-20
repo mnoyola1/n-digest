@@ -1,0 +1,91 @@
+name: Daily AI Digest
+
+on:
+  schedule:
+    # 6:30 AM ET during EDT (UTC-4)
+    - cron: '30 10 * * 1-5'
+    # 6:30 AM ET during EST (UTC-5)
+    - cron: '30 11 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (render preview, no email send, no state write)'
+        type: boolean
+        default: false
+      ignore_schedule:
+        description: 'Ignore the 6:30 AM ET time guard'
+        type: boolean
+        default: true
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_FROM_EMAIL: ${{ vars.RESEND_FROM_EMAIL || 'noreply@noyolalearn.com' }}
+      DIGEST_TO_EMAIL: ${{ vars.DIGEST_TO_EMAIL || 'mnoyola1@gmail.com' }}
+      DIGEST_ARCHIVE_BASE_URL: ${{ vars.DIGEST_ARCHIVE_BASE_URL || format('https://{0}.github.io/{1}/archive', github.repository_owner, github.event.repository.name) }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FILTER_MODEL: ${{ vars.FILTER_MODEL || 'claude-haiku-4-5' }}
+      COMPOSE_MODEL: ${{ vars.COMPOSE_MODEL || 'claude-opus-4-7' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run digest pipeline
+        run: |
+          set -euxo pipefail
+          FLAGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              FLAGS="$FLAGS --dry-run"
+            fi
+            if [ "${{ inputs.ignore_schedule }}" = "true" ]; then
+              FLAGS="$FLAGS --ignore-schedule"
+            fi
+          fi
+          python -m src.main $FLAGS
+
+      - name: Upload preview artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-preview
+          path: out/preview.html
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Commit state and archive
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false)
+        run: |
+          set -euo pipefail
+          git config user.name "n-digest-bot"
+          git config user.email "noreply@noyolalearn.com"
+          git add state/state.json docs/ || true
+          if git diff --cached --quiet; then
+            echo "No state or archive changes to commit."
+          else
+            git commit -m "digest: $(date -u +%Y-%m-%d) archive and state"
+            git push origin HEAD:${{ github.ref_name }}
+          fi

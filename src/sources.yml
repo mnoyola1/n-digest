@@ -1,0 +1,131 @@
+# Source configuration for n-digest. Edit freely; fetch.py reads this on every run.
+#
+# Schema per entry:
+#   name: human-readable label shown in the digest
+#   url: feed URL or API endpoint
+#   type: rss | atom | hn_search | github_search | hf_papers
+#   tags: list of priority tags (see prompts/filter_system.md)
+#   keyword_filter (optional): case-insensitive substrings; item title+summary must
+#     contain at least one to survive pre-filtering. Use for broad feeds where most
+#     items are off-topic.
+#   max_age_hours (optional, default 36): drop items older than this at fetch time.
+
+sources:
+  # --- Model labs ---
+  # Anthropic has no public RSS feed at time of writing. Coverage comes via
+  # Hacker News (AI) and Simon Willison, both of which track Anthropic releases
+  # closely. If Anthropic publishes a feed later, add it here.
+
+  - name: OpenAI
+    url: https://openai.com/news/rss.xml
+    type: rss
+    tags: [foundation_models]
+    max_age_hours: 168
+
+  - name: Google (DeepMind + AI)
+    url: https://blog.google/technology/ai/rss/
+    type: rss
+    tags: [foundation_models]
+    max_age_hours: 168
+
+  - name: Microsoft AI Blog
+    url: https://blogs.microsoft.com/ai/feed/
+    type: rss
+    tags: [foundation_models, rpa_ai]
+    max_age_hours: 168
+
+  # --- Oracle ecosystem ---
+  # Oracle public blogs 403 automated UAs; a future iteration can use Atom feeds
+  # at https://blogs.oracle.com/.../atom or a periodic scraped snapshot via a
+  # separate service. Kept off the list until that is resolved.
+
+  # --- Independents ---
+  - name: Simon Willison
+    url: https://simonwillison.net/atom/everything/
+    type: atom
+    tags: [dev_tools, foundation_models, rag]
+    max_age_hours: 72
+
+  # --- Research ---
+  - name: Hugging Face Daily Papers
+    url: https://huggingface.co/api/daily_papers
+    type: hf_papers
+    tags: [research, rag, agents]
+    max_age_hours: 96
+
+  - name: arXiv cs.AI
+    url: http://export.arxiv.org/rss/cs.AI
+    type: rss
+    tags: [research]
+    max_age_hours: 72
+
+  - name: arXiv cs.LG
+    url: http://export.arxiv.org/rss/cs.LG
+    type: rss
+    tags: [research]
+    max_age_hours: 72
+
+  - name: arXiv cs.CL
+    url: http://export.arxiv.org/rss/cs.CL
+    type: rss
+    tags: [research, rag]
+    max_age_hours: 72
+
+  # --- Utilities / regulated industries ---
+  - name: Utility Dive
+    url: https://www.utilitydive.com/feeds/news/
+    type: rss
+    tags: [utilities, enterprise_ai]
+    keyword_filter: [ai, artificial intelligence, machine learning, automation, llm, generative, agent, copilot, chatbot, digital worker]
+    max_age_hours: 168
+
+  - name: Smart Energy International
+    url: https://www.smart-energy.com/feed/
+    type: rss
+    tags: [utilities]
+    keyword_filter: [ai, artificial intelligence, machine learning, automation, llm, generative, agent]
+    max_age_hours: 168
+
+  # --- Policy & governance ---
+  - name: NIST News
+    url: https://www.nist.gov/news-events/news/rss.xml
+    type: rss
+    tags: [governance]
+    keyword_filter: [ai, artificial intelligence, machine learning, risk management framework, rmf]
+    max_age_hours: 336
+
+  - name: MIT Technology Review
+    url: https://www.technologyreview.com/feed/
+    type: rss
+    tags: [foundation_models, governance]
+    keyword_filter: [ai, artificial intelligence, llm, machine learning, generative, agent, chatbot]
+    max_age_hours: 168
+
+  # --- Wearables ---
+  - name: The Verge AI
+    url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    type: rss
+    tags: [wearables, foundation_models]
+    max_age_hours: 168
+
+  # --- Dev signal (non-RSS) ---
+  # HN Algolia: use points threshold to surface only items that actually made
+  # the front page, across AI keywords. Split OR into multiple simpler runs via
+  # broad "llm" search to keep the endpoint happy.
+  - name: Hacker News (AI)
+    url: https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E50&query=AI+LLM+Claude+GPT+agent
+    type: hn_search
+    tags: [dev_tools, foundation_models]
+    max_age_hours: 96
+
+  - name: GitHub Trending (Agents)
+    url: https://api.github.com/search/repositories?q=topic%3Aagents+language%3APython+pushed%3A%3E{{pushed_since}}&sort=stars&order=desc&per_page=10
+    type: github_search
+    tags: [dev_tools, agents]
+    max_age_hours: 168
+
+  - name: GitHub Trending (LLM)
+    url: https://api.github.com/search/repositories?q=topic%3Allm+language%3APython+pushed%3A%3E{{pushed_since}}&sort=stars&order=desc&per_page=10
+    type: github_search
+    tags: [dev_tools, foundation_models]
+    max_age_hours: 168

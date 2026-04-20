@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>{{ subject }}</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0066cc;
+    font-weight: 700;
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e5ea;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0 0 22px;
+  }
+  .meta a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .meta a:hover { text-decoration: underline; }
+  .quick-hits {
+    margin: 0;
+    padding: 0 0 0 18px;
+  }
+  .quick-hits li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+    margin-bottom: 9px;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .deeper {
+    background: #f5f5f7;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .deeper h3.headline { margin-bottom: 6px; }
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #0066cc; text-decoration: none; }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7; }
+    .eyebrow, .date, .footer, .quick-hits .src { color: #8e8e93; }
+    p.why, .quick-hits li { color: #d1d1d6; }
+    .quick-hits li a { color: #f5f5f7; }
+    h2 { color: #4aa3ff; border-bottom-color: #2c2c2e; }
+    .meta a, .footer a { color: #4aa3ff; }
+    .deeper { background: #2c2c2e; }
+    .footer { border-top-color: #2c2c2e; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">{{ preheader }}</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">{{ subject_headline }}</h1>
+      <p class="date">{{ date_long }}</p>
+
+      <h2>What Matters Today</h2>
+      {% for item in what_matters %}
+        <h3 class="headline"><a href="{{ item.url }}">{{ item.headline }}</a></h3>
+        <p class="why">{{ item.body }}</p>
+        <p class="meta"><a href="{{ item.url }}">{{ item.source }}</a> &middot; {{ item.read_time_min }} min read</p>
+      {% endfor %}
+
+      {% if quick_hits %}
+      <h2>Quick Hits</h2>
+      <ul class="quick-hits">
+        {% for hit in quick_hits %}
+        <li><a href="{{ hit.url }}">{{ hit.headline }}</a> <span class="src">&middot; {{ hit.source }}</span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if deeper_look %}
+      <h2>Worth a Deeper Look This Week</h2>
+      <div class="deeper">
+        <h3 class="headline"><a href="{{ deeper_look.url }}">{{ deeper_look.headline }}</a></h3>
+        <p class="why">{{ deeper_look.body }}</p>
+        <p class="meta"><a href="{{ deeper_look.url }}">{{ deeper_look.source }}</a> &middot; ~{{ deeper_look.read_time_min }} min read</p>
+      </div>
+      {% endif %}
+
+      <div class="footer">
+        {{ date_short }} &middot; curated from {{ reviewed_count }} items reviewed
+        {% if yesterday_url %}&middot; <a href="{{ yesterday_url }}">yesterday&rsquo;s digest</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
