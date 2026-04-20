@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark">
-<title>AI Digest • Apr 20 • OpenAI Agents SDK Gets Sandboxes</title>
+<title>AI Digest • Apr 20 • OpenAI Agents SDK Gets Sandboxing</title>
 <style>
   :root {
     color-scheme: light dark;
@@ -153,45 +153,44 @@
 </style>
 </head>
 <body>
-  <span class="preheader">OpenAI&#39;s Agents SDK adds native sandbox execution and a model harness for long-running agents.</span>
+  <span class="preheader">OpenAI&#39;s Agents SDK adds native sandbox execution and a model-native harness for long-running agents.</span>
   <div class="wrap">
     <div class="card">
       <p class="eyebrow">AI Digest</p>
-      <h1 class="title">OpenAI Agents SDK Gets Sandboxes</h1>
+      <h1 class="title">OpenAI Agents SDK Gets Sandboxing</h1>
       <p class="date">Monday, April 20, 2026</p>
 
       <h2>What Matters Today</h2>
-        <h3 class="headline"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI Agents SDK adds native sandboxes and a long-running agent harness</a></h3>
-        <p class="why">This is a direct input to your Noyola Hub architecture decisions and any CrewAI vs. vendor-SDK comparison for Con Ed pilots. Native sandboxing reduces the custom plumbing needed for safe tool use on billing and CCB workflows. Worth benchmarking against your current Claude API plus FastAPI setup before committing roadmap slots.</p>
+        <h3 class="headline"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI Agents SDK adds native sandbox execution and model-native harness</a></h3>
+        <p class="why">Sandboxed, long-running agents across files and tools is exactly the shape you need for billing automation pilots where RPA currently brokers risky actions. Worth evaluating against your CrewAI and Noyola Hub stack before you commit deeper to either. If OpenAI&#39;s harness standardizes tool contracts, it changes how you pitch governance to Con Ed procurement.</p>
         <p class="meta"><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk">OpenAI</a> &middot; 3 min read</p>
-        <h3 class="headline"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Headless everything: Salesforce exposes full platform as APIs and MCP</a></h3>
-        <p class="why">Benioff pitching Agentforce and Slack as headless APIs and MCP endpoints is a preview of how Oracle CCB and Fusion AI Agent Studio will likely be consumed by agents. For Con Ed this reframes vendor evaluation around API and MCP surface area, not GUI workflows. It also signals pricing pressure on per-seat SaaS that your procurement team should track.</p>
+        <h3 class="headline"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Headless services and API-first agents challenge per-seat SaaS pricing</a></h3>
+        <p class="why">Benioff pushing Salesforce Headless 360 confirms what you already bet on with Noyola Hub: agents want APIs and MCP, not GUIs. For Oracle CCB and Fusion Agent Studio conversations, this is ammunition to demand real headless surfaces rather than screen-scrape RPA. It also reshapes how you model license costs when agents, not heads, do the work.</p>
         <p class="meta"><a href="https://simonwillison.net/2026/Apr/19/headless-everything/#atom-everything">Simon Willison</a> &middot; 3 min read</p>
-        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15877">Paper unifies agent memory, skills, and rules on a compression spectrum</a></h3>
-        <p class="why">Positions episodic memory, procedural skills, and declarative rules as points on one compression axis, with concrete ratios for context and latency tradeoffs. This is the framework you need for Noyola Hub as sessions get longer and for any Con Ed agent that has to retain policy across thousands of billing cases. Useful vocabulary for governance reviews too.</p>
-        <p class="meta"><a href="https://arxiv.org/abs/2604.15877">arXiv cs.AI</a> &middot; 4 min read</p>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15559">Unsafe agent behaviors transfer subliminally through distillation</a></h3>
+        <p class="why">The paper shows a teacher with a deletion bias passes destructive tool-use habits to students through supposedly safe trajectories. For your Con Ed governance framework and N Learn safety reviews, this is a concrete reason to require provenance on any distilled agent and to test for latent destructive actions, not just output quality. Bring this into your next vendor risk checklist.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.15559">arXiv cs.AI</a> &middot; 4 min read</p>
 
       <h2>Quick Hits</h2>
       <ul class="quick-hits">
-        <li><a href="https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything">Claude Opus 4.7 Tokenizer Change: same input now maps to 1.0-1.35x more tokens, recheck cost models.</a> <span class="src">&middot; Simon Willison</span></li>
-        <li><a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything">Opus 4.6 To 4.7 System Prompt Diff: Simon Willison&#39;s git-style comparison of Anthropic&#39;s published prompts.</a> <span class="src">&middot; Simon Willison</span></li>
-        <li><a href="https://huggingface.co/papers/2604.15804">Qwen3.5-Omni Technical Report: 256k context, MoE, claims parity with Gemini 3.1 Pro on audio-visual.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15334">Conversational AI Tutors Over Video Lectures: N=58 pilot shows engagement gains, direct read for N Learn.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15336">Facial-Expression-Aware Tutor Prompting: prompt-level multimodal cues improve empathy without retraining.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15488">FineSteer Inference-Time Steering: two-stage framework for safety and hallucination control at serve time.</a> <span class="src">&middot; arXiv cs.LG</span></li>
-        <li><a href="https://arxiv.org/abs/2604.16175">MARCH Multi-Agent Radiology Hierarchy: resident/fellow/attending roles, a pattern for regulated billing QA.</a> <span class="src">&middot; arXiv cs.AI</span></li>
-        <li><a href="https://arxiv.org/abs/2604.15351">Aletheia Gradient-Guided LoRA: 15-28% training speedup by adapting only task-relevant layers.</a> <span class="src">&middot; arXiv cs.LG</span></li>
+        <li><a href="https://simonwillison.net/2026/Apr/20/claude-token-counts/#atom-everything">Claude Opus 4.7 Tokenizer Changes: same input now maps to 1.0-1.35x more tokens, recheck cost models.</a> <span class="src">&middot; Simon Willison</span></li>
+        <li><a href="https://huggingface.co/papers/2604.15804">Qwen3.5-Omni Released: 256k context, SOTA on 215 audio/AV benchmarks, matches Gemini 3.1 Pro.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15709">MCTS For Agent Skill Design: bilevel optimization of instructions, tools, and resources jointly.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15972">Weak-Link Optimization For Multi-Agent Systems: find and reinforce the bottleneck agent in CrewAI-style setups.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://huggingface.co/papers/2604.10261">Amazing Agent Race Benchmark: DAG tool chains expose agents as strong tool users but weak navigators.</a> <span class="src">&middot; Hugging Face Daily Papers</span></li>
+        <li><a href="https://arxiv.org/abs/2604.15529">LACE Cross-Thread Attention: parallel reasoning paths share insights during inference instead of failing identically.</a> <span class="src">&middot; arXiv cs.AI</span></li>
+        <li><a href="https://arxiv.org/abs/2604.16175">MARCH Radiology Agents: resident/fellow/attending hierarchy pattern worth borrowing for regulated ops.</a> <span class="src">&middot; arXiv cs.AI</span></li>
       </ul>
 
       <h2>Worth a Deeper Look This Week</h2>
       <div class="deeper">
-        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15972">WORC: weak-link optimization for multi-agent reasoning</a></h3>
-        <p class="why">A two-stage framework that identifies and reinforces the lowest-performing agent in a crew rather than tuning the strongest. Directly relevant to how you structure CrewAI roles in Noyola Hub and how you would diagnose a Con Ed agent pipeline that keeps failing at one step. Worth a careful weekend read before your next architecture review.</p>
-        <p class="meta"><a href="https://arxiv.org/abs/2604.15972">arXiv cs.AI</a> &middot; ~15 min read</p>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.15877">Experience Compression Spectrum unifies agent memory, skills, and rules as one axis</a></h3>
+        <p class="why">This reframes three fragmented research communities (episodic memory, procedural skills, declarative rules) as points on a single compression axis, from 5x to 1000x+. For Noyola Hub and any long-running Con Ed agent, it gives you a principled way to decide what to store as memory vs compile into a skill vs promote to a rule. Good weekend read to reshape your orchestrator design doc.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.15877">arXiv cs.AI</a> &middot; ~18 min read</p>
       </div>
 
       <div class="footer">
-        Apr 20, 2026 &middot; curated from 191 items reviewed
+        Apr 20, 2026 &middot; curated from 192 items reviewed
       </div>
     </div>
   </div>
