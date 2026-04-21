@@ -2,10 +2,10 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # 6:00 AM ET during EDT (UTC-4)
-    - cron: '0 10 * * 1-5'
-    # 6:00 AM ET during EST (UTC-5)
-    - cron: '0 11 * * 1-5'
+    # 5:30 AM ET during EDT (UTC-4)
+    - cron: '30 9 * * 1-5'
+    # 5:30 AM ET during EST (UTC-5)
+    - cron: '30 10 * * 1-5'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -13,7 +13,7 @@ on:
         type: boolean
         default: false
       ignore_schedule:
-        description: 'Ignore the 6:00 AM ET time guard'
+        description: 'Ignore the 5:30 AM ET time guard'
         type: boolean
         default: true
 

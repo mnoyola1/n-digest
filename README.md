@@ -1,6 +1,6 @@
 # n-digest
 
-Daily curated AI industry digest, emailed weekdays at 6:00 AM ET.
+Daily curated AI industry digest, emailed weekdays at 5:30 AM ET.
 
 Built for one reader (mnoyola1@gmail.com). Runs on GitHub Actions cron. Two-stage Claude curation: Haiku 4.5 filters and scores the daily pool, Opus 4.7 writes the 3 "What Matters Today" blurbs and the weekend Deeper Look.
 
@@ -48,7 +48,7 @@ Go to `https://github.com/mnoyola1/n-digest/settings/secrets/actions` and add:
 
 `Actions -> Daily AI Digest -> Run workflow`. Leave both inputs at their defaults (`dry_run: false`, `ignore_schedule: true`). After ~45 seconds the email will hit `mnoyola1@gmail.com`.
 
-From then on, the dual-cron schedule (`0 10 * * 1-5` and `0 11 * * 1-5` UTC) fires every weekday; only the entry that lands near 6:00 AM ET proceeds past the DST guard (±10 min window to tolerate GitHub Actions scheduler drift).
+From then on, the dual-cron schedule (`30 9 * * 1-5` and `30 10 * * 1-5` UTC) fires every weekday; only the entry that lands near 5:30 AM ET proceeds past the DST guard (±15 min window to tolerate GitHub Actions scheduler drift, which can exceed 10 min on free-tier runners).
 
 ## Local development
 

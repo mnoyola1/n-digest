@@ -5,10 +5,10 @@ Usage:
   python -m src.main --send-to-self   # full pipeline, real send
   python -m src.main                  # scheduled run (GitHub Actions)
 
-When run on the 6:00-ET schedule, a DST guard checks that it's actually ~6:00 AM
-in New York before proceeding. Both 10:00 and 11:00 UTC cron entries fire daily
-so the guard picks the right one. The window is +/-10 minutes to tolerate GitHub
-Actions scheduler drift on free-tier runners.
+When run on the 5:30-ET schedule, a DST guard checks that it's actually ~5:30 AM
+in New York before proceeding. Both 09:30 and 10:30 UTC cron entries fire daily
+so the guard picks the right one. The window is +/-15 minutes to tolerate GitHub
+Actions scheduler drift on free-tier runners (which can exceed 10 min).
 """
 
 from __future__ import annotations
@@ -68,13 +68,13 @@ def _et_now() -> datetime:
 
 
 def _should_run_on_schedule() -> bool:
-    """True if current ET time is within a 10-minute window of 6:00 AM on a weekday."""
+    """True if current ET time is within a 15-minute window of 5:30 AM on a weekday."""
     now = _et_now()
     if now.weekday() > 4:  # Sat/Sun
         return False
-    target_minutes = 6 * 60  # 06:00 ET
+    target_minutes = 5 * 60 + 30  # 05:30 ET
     current_minutes = now.hour * 60 + now.minute
-    return abs(current_minutes - target_minutes) <= 10
+    return abs(current_minutes - target_minutes) <= 15
 
 
 def _estimate_cost(model: str, in_tokens: int, out_tokens: int) -> float:
@@ -89,7 +89,7 @@ def run(dry_run: bool = False, send_override: str | None = None, ignore_schedule
 
     if not ignore_schedule and not dry_run and not send_override:
         if not _should_run_on_schedule():
-            log.info("Skipping: current ET time %s is not within the 6:00 AM window", _et_now().isoformat())
+            log.info("Skipping: current ET time %s is not within the 5:30 AM window", _et_now().isoformat())
             return 0
 
     now_et = _et_now()
