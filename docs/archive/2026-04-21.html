@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Apr 21 • Agent Memory, Skills, and Lifecycles</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Three fresh papers push agent infrastructure toward lifelong skill discovery, managed memory, and cross-session personalization.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Agent Memory, Skills, and Lifecycles</h1>
+      <p class="date">Tuesday, April 21, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2604.18292">Agent-World builds a self-evolving MCP arena for training general agents</a></h3>
+          <p class="why">This is the kind of environment synthesis Noyola Hub needs to stress-test CrewAI flows beyond toy tasks. The MCP-native design aligns with where your tool orchestration is already heading. Worth watching as a template for how to grow a real training loop around billing and customer-ops agents instead of hand-curating scenarios.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2604.18292">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2604.16774">StageMem treats agent memory as a lifecycle, not a vector dump</a></h3>
+          <p class="why">Your Claude Glasses and Noyola Hub both suffer the same failure mode: too many uncertain items retained, important ones lost. StageMem&#39;s stateful framing gives you a vocabulary for memory governance, which also maps cleanly to CCB customer-context retention where audit and expiration rules matter. Useful design reference before you lock in Supabase schemas.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2604.16774">arXiv cs.CL</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2604.17886">PRefine adds cross-session personalization to tool-calling agents at 1.24% token cost</a></h3>
+          <p class="why">Con Ed customer agents routinely get under-specified requests, and rebuilding preferences from full history every turn is a non-starter on cost. A generate-verify-refine loop that compresses user constraints is directly applicable to CCB-facing agents and to N Learn&#39;s per-student preference modeling. The MPT benchmark is also a useful eval template for your team.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2604.17886">Hugging Face Daily Papers</a> &middot; 3 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2604.17308">SkillFlow Benchmark: 166 Tasks Testing Whether Agents Can Discover, Repair, and Curate Skills Over Time</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2604.16335">Rubric-Based Reward Models For SWE Agents: Richer Signals Than Pass/Fail Unit Tests</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2604.16422">Continual Pretraining vs GraphRAG: UMLS Study Gives Concrete Trade-Offs For Structured Knowledge Injection</a> <span class="src">&middot; arXiv cs.CL</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2604.16430">HalluSAE: Sparse Autoencoders Flag Hallucinations As Phase Transitions In Latent Dynamics</a> <span class="src">&middot; arXiv cs.CL</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://huggingface.co/papers/2604.18224">WebCompass: Multimodal Benchmark For Web Coding Agents Across Generation, Editing, And Repair</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2604.18394">OpenGame: Open-Source Agent Framework For Cross-File Code Coordination In Full Game Builds</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2604.16536">Machine Unlearning Testing: Framing Deletion Verification As A First-Class QA Problem</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://arxiv.org/abs/2604.16325">UniMamba: State-Space Plus Attention For Multivariate Forecasting, Pitched At Energy And Finance</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #d97706; background: #fffbeb;">
+        <span class="pill" style="background: #d97706;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2604.16380">A comprehensive survey of data mixing strategies for LLM pretraining</a></h3>
+        <p class="why">Worth the weekend because data mixture decisions quietly drive every vendor capability claim you evaluate. The paper formalizes mixing as a bilevel problem on the simplex and reviews methods across compute budgets, giving you a cleaner lens for reading model cards and pushing back on foundation-model pitches to Con Ed.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2604.16380">arXiv cs.CL</a> &middot; ~20 min read</p>
+      </div>
+
+      <div class="footer">
+        Apr 21, 2026 &middot; curated from 197 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-04-20.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
