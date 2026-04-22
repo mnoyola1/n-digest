@@ -5,10 +5,13 @@ Usage:
   python -m src.main --send-to-self   # full pipeline, real send
   python -m src.main                  # scheduled run (GitHub Actions)
 
-When run on the 5:30-ET schedule, a DST guard checks that it's actually ~5:30 AM
-in New York before proceeding. Both 09:30 and 10:30 UTC cron entries fire daily
-so the guard picks the right one. The window is +/-15 minutes to tolerate GitHub
-Actions scheduler drift on free-tier runners (which can exceed 10 min).
+Scheduled runs are gated by a DST-aware cron matcher, not by wall-clock time.
+GitHub Actions free-tier cron drift routinely exceeds 1-2 hours on popular cron
+minutes, so a time-window guard would silently drop most runs. Instead, both
+09:30 UTC and 10:30 UTC cron entries fire daily, and the guard accepts whichever
+one targets the DST offset currently in effect in New York. The email may land
+anywhere from 5:30 AM ET (best case, rare) to late morning (heavy drift), but
+it lands exactly once per weekday in the correct timezone.
 """
 
 from __future__ import annotations
@@ -67,11 +70,49 @@ def _et_now() -> datetime:
     return datetime.now(ZoneInfo("America/New_York"))
 
 
+# Map UTC cron entries (must match .github/workflows/daily-digest.yml) to the
+# DST offset they are intended for. Each entry targets 5:30 AM America/New_York.
+SCHEDULED_CRON_TO_OFFSET = {
+    "30 9 * * 1-5":  -4 * 3600,  # EDT (UTC-4): 09:30 UTC == 05:30 EDT
+    "30 10 * * 1-5": -5 * 3600,  # EST (UTC-5): 10:30 UTC == 05:30 EST
+}
+
+
 def _should_run_on_schedule() -> bool:
-    """True if current ET time is within a 15-minute window of 5:30 AM on a weekday."""
+    """Decide whether this invocation should proceed.
+
+    Two modes:
+
+    1. **GitHub-scheduled run** (``SCHEDULED_CRON`` env set): accept only if the
+       fired cron entry targets the DST offset currently in effect in New York.
+       This guarantees exactly one send per weekday regardless of GitHub Actions
+       scheduler drift (which is frequently 1-2 hours on free-tier runners).
+
+    2. **Local / manual run without --ignore-schedule** (no SCHEDULED_CRON):
+       fall back to a time-window check centered on 5:30 AM ET (+/-15 min) so
+       developers can't accidentally send from `python -m src.main` mid-day.
+    """
     now = _et_now()
     if now.weekday() > 4:  # Sat/Sun
         return False
+
+    fired_cron = os.environ.get("SCHEDULED_CRON", "").strip()
+    if fired_cron:
+        target_offset = SCHEDULED_CRON_TO_OFFSET.get(fired_cron)
+        if target_offset is None:
+            log.warning("Unknown SCHEDULED_CRON=%r; refusing to send", fired_cron)
+            return False
+        current_offset = int(now.utcoffset().total_seconds())
+        if current_offset != target_offset:
+            log.info(
+                "Skipping: cron %r targets UTC%+d but ET is currently UTC%+d (DST mismatch)",
+                fired_cron, target_offset // 3600, current_offset // 3600,
+            )
+            return False
+        log.info("Schedule matched: cron %r for current ET offset UTC%+d", fired_cron, current_offset // 3600)
+        return True
+
+    # Fallback: manual / local invocation without --ignore-schedule.
     target_minutes = 5 * 60 + 30  # 05:30 ET
     current_minutes = now.hour * 60 + now.minute
     return abs(current_minutes - target_minutes) <= 15
@@ -89,7 +130,8 @@ def run(dry_run: bool = False, send_override: str | None = None, ignore_schedule
 
     if not ignore_schedule and not dry_run and not send_override:
         if not _should_run_on_schedule():
-            log.info("Skipping: current ET time %s is not within the 5:30 AM window", _et_now().isoformat())
+            # Detailed reason was already logged by _should_run_on_schedule().
+            log.info("Run rejected by schedule guard; exiting cleanly (et=%s)", _et_now().isoformat())
             return 0
 
     now_et = _et_now()

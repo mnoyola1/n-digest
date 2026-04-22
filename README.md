@@ -1,6 +1,6 @@
 # n-digest
 
-Daily curated AI industry digest, emailed weekdays at 5:30 AM ET.
+Daily curated AI industry digest, emailed to the owner every weekday morning ET. Target send time is 5:30 AM ET but GitHub Actions free-tier cron drift often pushes it to late morning; the pipeline guarantees exactly one send per weekday in the correct DST timezone, whenever GitHub actually fires the workflow.
 
 Built for one reader (mnoyola1@gmail.com). Runs on GitHub Actions cron. Two-stage Claude curation: Haiku 4.5 filters and scores the daily pool, Opus 4.7 writes the 3 "What Matters Today" blurbs and the weekend Deeper Look.
 
@@ -48,7 +48,7 @@ Go to `https://github.com/mnoyola1/n-digest/settings/secrets/actions` and add:
 
 `Actions -> Daily AI Digest -> Run workflow`. Leave both inputs at their defaults (`dry_run: false`, `ignore_schedule: true`). After ~45 seconds the email will hit `mnoyola1@gmail.com`.
 
-From then on, the dual-cron schedule (`30 9 * * 1-5` and `30 10 * * 1-5` UTC) fires every weekday; only the entry that lands near 5:30 AM ET proceeds past the DST guard (±15 min window to tolerate GitHub Actions scheduler drift, which can exceed 10 min on free-tier runners).
+From then on, the dual-cron schedule (`30 9 * * 1-5` and `30 10 * * 1-5` UTC) fires every weekday. The pipeline is gated by a **DST-aware cron matcher**, not a time window: whichever cron entry targets the offset currently in effect (EDT vs EST) proceeds; the other is rejected. This guarantees exactly one send per weekday regardless of how late GitHub fires the workflow (free-tier drift is routinely 1-2 hours).
 
 ## Local development
 

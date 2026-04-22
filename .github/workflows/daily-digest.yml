@@ -54,6 +54,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run digest pipeline
+        env:
+          # Which cron triggered this run (empty string for workflow_dispatch).
+          # Python guard uses this to enforce DST-correct dispatch regardless
+          # of GitHub Actions scheduler drift (which can exceed 2 hours).
+          SCHEDULED_CRON: ${{ github.event.schedule }}
         run: |
           set -euxo pipefail
           FLAGS=""
