@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Apr 23 • Stateless Memory for Regulated Agents</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">A new framework argues enterprise agents in regulated domains need deterministic replay and stateless design, not fancy memory architectures.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Stateless Memory for Regulated Agents</h1>
+      <p class="date">Thursday, April 23, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2604.20158">Stateless decision memory beats stateful agents in regulated workflows</a></h3>
+          <p class="why">This paper names the exact constraints your Con Ed AI team faces: deterministic replay, auditable rationale, multi-tenant isolation, and horizontal scale. The authors show stateful memory architectures violate these by construction and propose an append-only event log with task-conditioned projections. Worth reading before your next CCB agent architecture review or RPA-plus-LLM procurement decision.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2604.20158">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2604.19755">Evidence-constrained LLM triage framework for AML holds lessons for billing disputes</a></h3>
+          <p class="why">AML triage and billing exception handling share the same regulatory shape: high alert volume, strict audit trails, hallucination risk. The framework pairs retrieval-augmented evidence bundling with a structured output contract and counterfactual checks. This is a transferable pattern for Con Ed customer ops triage agents where you need faithful explanations tied to CCB data, not free-form LLM rationales.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2604.19755">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #0d9488;">
+          <div class="tag" style="color: #0d9488;">Wearable AI</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2604.19642">Micro language models generate first words on-device while cloud finishes the sentence</a></h3>
+          <p class="why">Direct hit for Claude Glasses. 8M-30M parameter models generate the first 4-8 words locally on ESP32-class hardware, masking cloud latency by reframing the cloud model as a continuator. This solves the exact problem your FastAPI/Cloud Run backend has with multi-second round trips breaking voice interaction. Worth prototyping against your current pipeline.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2604.19642">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://openai.com/index/introducing-openai-privacy-filter">OpenAI Privacy Filter: Open-Weight PII Detection Model For Redaction In Regulated Pipelines</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://openai.com/academy/workspace-agents">OpenAI Workspace Agents: ChatGPT Agents For Repeatable Team Workflows And Tool Orchestration</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://simonwillison.net/2026/Apr/22/qwen36-27b/#atom-everything">Qwen3.6-27B: Flagship Coding At 55GB, Runs Locally Via llama.cpp With Q4 Quant</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2604.20133">EvoAgent: Structured Skill Learning With Hierarchical Sub-Agent Delegation, Relevant To Noyola Hub</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://arxiv.org/abs/2604.19767">PayPal + EAGLE3 Speculative Decoding: 22-49% Throughput Gain On 2xH100, Zero Extra Hardware</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2604.19793">SkillGraph: Workflow-Precedence Graph Beats Semantic Similarity For Agent Tool Ordering</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2604.19800">On-Meter GNN: GCN And GraphSAGE Deployed To Smart Meters Via ONNX For PV Forecasting</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://arxiv.org/abs/2604.19751">AI To Learn 2.0: Deliverable-Oriented Governance Rubric For AI-Assisted Learning Artifacts</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://huggingface.co/papers/2604.20779">SWE-chat releases 6,000 real coding agent sessions with 355K tool calls for failure-mode analysis</a></h3>
+        <p class="why">This is the empirical grounding missing from most agent papers: actual sessions from open-source developers, with usage bimodality and concrete failure modes characterized. For anyone designing CrewAI workflows or evaluating agent platforms for Con Ed, a weekend spent reading how real users break real agents is more useful than another benchmark leaderboard.</p>
+        <p class="meta"><a href="https://huggingface.co/papers/2604.20779">Hugging Face Daily Papers</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Apr 23, 2026 &middot; curated from 198 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-04-22.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
