@@ -33,6 +33,9 @@ jobs:
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       RESEND_FROM_EMAIL: ${{ vars.RESEND_FROM_EMAIL || 'noreply@noyolalearn.com' }}
       DIGEST_TO_EMAIL: ${{ vars.DIGEST_TO_EMAIL || 'mnoyola1@gmail.com' }}
+      # Optional CC list, comma-separated. Set via GitHub repo variables so
+      # recipient addresses aren't committed to the public repo.
+      DIGEST_CC_EMAIL: ${{ vars.DIGEST_CC_EMAIL }}
       DIGEST_ARCHIVE_BASE_URL: ${{ vars.DIGEST_ARCHIVE_BASE_URL || format('https://{0}.github.io/{1}/archive', github.repository_owner, github.event.repository.name) }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       FILTER_MODEL: ${{ vars.FILTER_MODEL || 'claude-haiku-4-5' }}
