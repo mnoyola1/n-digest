@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • May 6 • Guard Models Collapse Under Fine-Tuning</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">New research shows safety classifiers lose alignment from benign domain training, with implications for any agentic billing pipeline.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Guard Models Collapse Under Fine-Tuning</h1>
+      <p class="date">Wednesday, May 6, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2605.02914">Guard models lose safety alignment after benign fine-tuning, study finds</a></h3>
+          <p class="why">LlamaGuard, WildGuard, and Granite Guardian collapse when specialized on harmless domain data, with Granite&#39;s refusal rate dropping from 85% to 0%. If your team is layering guard classifiers in front of CCB or RPA agent pipelines and tuning them on Con Ed billing language, this is a direct procurement and governance signal. Treat guardrail evals as continuous, not pre-deployment only.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2605.02914">arXiv cs.LG</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2605.01147">Safety in agentic systems is set by interaction topology, not model choice</a></h3>
+          <p class="why">The paper argues ordering instability and information cascades dominate outcomes when agents deliberate sequentially or vote in parallel. For Noyola Hub and any CrewAI orchestration you ship into customer ops, this means topology design is the governance lever, not the underlying Claude or GPT version. Worth reframing how the 16-person team reviews multi-agent designs before sign-off.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2605.01147">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://openai.com/index/gpt-5-5-instant">OpenAI ships GPT-5.5 Instant as ChatGPT default</a></h3>
+          <p class="why">Smarter answers, fewer hallucinations, and better personalization controls in the default tier. For vendor evaluation against Claude on billing automation tasks, you&#39;ll want a fresh head-to-head before the next roadmap review. Also relevant for Financial Fix coaching flows where personalization controls affect tone consistency.</p>
+          <p class="meta"><a href="https://openai.com/index/gpt-5-5-instant">OpenAI</a> &middot; 3 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2605.01214">Agents As Marginal Token Allocators: useful procurement lens for routing, planning, and serving cost trade-offs.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #0891b2;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0891b2;"></span>
+          <a href="https://arxiv.org/abs/2605.01208">Faithful Mobile GUI Agents: evidence-grounded VLM agent design relevant to RPA-LLM convergence in CCB screens.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2605.00841">ESG Agent Framework Built On n8n: production example of compliance agents in your existing stack.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2605.00846">ClinicBot Prioritized-Evidence RAG: structured guideline extraction with citations, transferable to tariff and policy docs.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://arxiv.org/abs/2605.01123">PERSA Aligns LLM Feedback To Instructor Voice: RLHF recipe to consider for N Learn&#39;s Niko persona consistency.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2605.04036">OpenSeeker-v2 Search Agents Via SFT: high-difficulty trajectories beat heavier RL pipelines for deep search.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2605.01102">Layer Execution Graph For Multi-Agent Coordination: planner-plus-specialist topology pattern for Noyola Hub.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2605.02913">A Generate-Filter-Control-Replay taxonomy for LLM RL rollouts</a></h3>
+        <p class="why">Optimizer-agnostic survey that decomposes rollout pipelines into four modular stages and unifies notation across the field. If you&#39;re starting to think about training or fine-tuning agents for billing workflows rather than just prompting them, this is the reference doc to anchor team conversations on reward design, trajectory filtering, and replay.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2605.02913">arXiv cs.LG</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        May 6, 2026 &middot; curated from 199 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-05-05.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
