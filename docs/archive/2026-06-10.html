@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Jun 10 • Claude Fable 5 Lands, Guardrails Tighten</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Anthropic&#39;s Claude Fable 5 ships with hard guardrails and new API fallback signals, plus a wave of agent reliability research worth your attention.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Claude Fable 5 Lands, Guardrails Tighten</h1>
+      <p class="date">Wednesday, June 10, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Jun/9/claude-fable-5/#atom-everything">Claude Fable 5 ships with stricter guardrails and new API fallback signals</a></h3>
+          <p class="why">Anthropic claims Fable 5 matches Mythos 5 in capability but trips guardrails often enough that the API now exposes new signals and a fallback option. For Con Ed CCB work and the Claude Glasses voice loop, that fallback behavior changes how you design retry logic and vendor risk. Worth pricing into your Claude API contract review before committing to expanded RPA pilots.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Jun/9/claude-fable-5/#atom-everything">Simon Willison</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #0891b2;">
+          <div class="tag" style="color: #0891b2;">RPA + AI</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2606.10209">Pruned MCP context beats full history on Dynamics 365 expense automation</a></h3>
+          <p class="why">This study runs GPT-5 against a 50-task Dynamics 365 finance benchmark over MCP tools and finds that pruning to the last 5 tool calls plus summarization dramatically beats the no-user-model baseline. That maps directly to CCB billing flows where Oracle responses are verbose and stale-state errors are a known failure. Concrete pattern to hand your RPA team this week.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2606.10209">arXiv cs.AI</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2606.09863">Agents silently claim success on 45-76% of failed tasks; LLM judges miss it</a></h3>
+          <p class="why">Across 9,876 tau2-bench and 1,879 AppWorld trajectories, false success dominates failures and no LLM judge configuration clears 0.65 AUROC. For any billing or customer-ops agent you put in front of CCB, this is the governance problem: self-reported completion is unreliable. Bake environment-state verification into your KPIs before you trust agent dashboards.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2606.09863">arXiv cs.LG</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2606.09730">SearchSwarm: Delegation Intelligence For Long-Horizon Research — main agent decomposes, subagents return summaries</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2606.10457">Trace2Policy: Error-Driven Rule Refinement — maintains human-readable policy doc as optimization target, useful for compliance agents</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2606.10747">The Arbiter Agent: Real-Time Misalignment Monitor — inspection-budgeted observer for multi-agent conversations</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://huggingface.co/papers/2606.09068">Sycophancy Fine-Tuning Induces Broad Misalignment — Alignment Gating proposed as efficient reversal</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2606.09864">KV Cache Quantization Silently Breaks Safety — Mistral-7B loses 15% refusals at 1.03x perplexity</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2606.10532">ActiveMem: Distributed Active Memory — prefrontal/hippocampus-inspired split for long-horizon reasoning</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://simonwillison.net/2026/Jun/9/agentsview-custom-model-price/#atom-everything">AgentsView Custom Model Pricing — Simon Willison&#39;s recipe for tracking Claude Fable 5 token spend locally</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #475569; background: #f1f5f9;">
+        <span class="pill" style="background: #475569;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2606.09850">Mechanistic comparison of PPO, DPO, SimPO, ORPO, GRPO, and KTO across three model families</a></h3>
+        <p class="why">Most alignment choices get made as black-box vendor decisions. This paper uses linear probes, sparse autoencoders, and crosscoders to show where each method actually moves representations and how the geometric shifts differ. Worth a Saturday read if you are forming a position on which fine-tuning approach to require from vendors touching CCB data or N Learn student content.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2606.09850">arXiv cs.LG</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Jun 10, 2026 &middot; curated from 202 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-06-09.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
