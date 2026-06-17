@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Jun 17 • PreAct caches RPA runs 13x faster</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">A new computer-use agent technique replays repeated UI tasks as state machines, cutting per-run LLM cost dramatically.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">PreAct caches RPA runs 13x faster</h1>
+      <p class="date">Wednesday, June 17, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #0891b2;">
+          <div class="tag" style="color: #0891b2;">RPA + AI</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2606.17929">PreAct compiles repeat UI agent runs into state machines for 8.5-13x speedup</a></h3>
+          <p class="why">This is the exact pattern your CCB billing-automation flows need. Most RPA-plus-LLM work pays full inference cost on every run of a known task. PreAct compiles a successful trajectory into a deterministic replay with screen checks, then hands back to the agent only on drift. Worth modeling against your current UiPath and Power Automate token spend before the next vendor review.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2606.17929">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2606.17321">ProCUA-SFT releases 3.1M synthetic computer-use trajectories for agent training</a></h3>
+          <p class="why">The paper shows fine-tuning on AgentNet&#39;s 22K human traces actually degrades UI-TARS from 26% to 8% on OSWorld, while their synthetic pipeline lifts it. For the AI and Technology team, the lesson is procurement-grade: if a vendor pitches a computer-use agent trained on hand-collected traces, ask what synthetic distillation they ran. The trajectory format itself is a useful template for capturing CCB workflows.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2606.17321">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #4f46e5;">
+          <div class="tag" style="color: #4f46e5;">EdTech · N Learn</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2606.16428">LecturaAgents structures adaptive tutoring as a ProfessorAgent leading subordinate specialists</a></h3>
+          <p class="why">Direct architectural reference for N Learn. The professor-student multi-agent layout maps cleanly onto Niko-as-orchestrator with specialists for planning, review, and embodied delivery. Note their separation of research, planning, and review agents, that boundary is what keeps K-12 safety reviewable. Consider whether your current CrewAI setup collapses too many roles into one agent.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2606.16428">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://openai.com/index/deployment-simulation">OpenAI Publishes Deployment Simulation Method: predicts model behavior pre-release using real conversation data</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://arxiv.org/abs/2606.17930">Inference Compute Reshapes Frontier Evals: single-budget benchmarks understate capability, matters for procurement math</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://simonwillison.net/2026/Jun/16/georgi-gerganov/#atom-everything">Gerganov Endorses Qwen3.6-27B For Local Coding: daily-driver on M2 Ultra and RTX 5090, viable Noyola Hub fallback</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2606.17454">Intent-Execution Gap Formalized: harness-model mismatch, not the model, often caps agent performance</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2606.17546">SEAGym Evaluates Agent Harness Updates: tracks regression, OOD, and cost across versions, useful KPI scaffold</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://arxiv.org/abs/2606.17507">Curriculum-Grounded LLM-As-Judge Pipeline: marks exam answers against authorized rubrics, model for N Learn assessment</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2606.17637">Brick-DICL Maps BMS Points To Brick Schema: 936-class ontology problem analogous to CCB code standardization</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2606.17645">Web Agents Reuse Skills Via Interaction Patterns: cuts tokens on repeated portal flows, applies to billing-portal RPA</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://huggingface.co/papers/2606.17628">OPD-Evolver uses slow-fast on-policy distillation to grow a self-evolving agent&#39;s memory skills</a></h3>
+        <p class="why">Worth a weekend read if you are designing Noyola Hub&#39;s memory layer. The paper separates a fast loop that reads, writes, and maintains a four-level memory hierarchy from a slow loop that distills those abilities back into the model. That split is a cleaner mental model than most CrewAI memory patterns, and the on-policy distillation idea is portable to smaller open-weight setups.</p>
+        <p class="meta"><a href="https://huggingface.co/papers/2606.17628">Hugging Face Daily Papers</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Jun 17, 2026 &middot; curated from 204 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-06-16.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
