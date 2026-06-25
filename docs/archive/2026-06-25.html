@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Jun 25 • OpenAI and Broadcom Ship Inference Chip</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">OpenAI and Broadcom unveil Jalapeño, a custom LLM inference chip aimed at cost and scale.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">OpenAI and Broadcom Ship Inference Chip</h1>
+      <p class="date">Thursday, June 25, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip">OpenAI and Broadcom unveil Jalapeño, a custom LLM inference chip</a></h3>
+          <p class="why">If OpenAI lowers inference cost per token at scale, the math on routing Con Ed billing automation workloads to GPT versus Claude or open weights shifts. Watch how pricing flows through Azure OpenAI before locking vendor commitments in the next CCB AI roadmap cycle. Also relevant for Noyola Hub orchestration economics when agents fan out across multiple model calls.</p>
+          <p class="meta"><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip">OpenAI</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2606.25605">Open-weight LLMs suppress tool calls when JSON schema is enforced</a></h3>
+          <p class="why">This is a real production failure mode for CrewAI and n8n agents that rely on both structured output and tool use, which is exactly the pattern in Noyola Hub and any CCB agent that emits a structured action. Worth a half-day audit on your agent stack to confirm tool invocation rates have not silently dropped under schema constraints. Cheap to check, expensive to miss.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2606.25605">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2606.24955">Continual learning framework for nonstationary power forecasting</a></h3>
+          <p class="why">The continual-learning framing applies directly to billing and consumption models that drift as weather, rate changes, and EV adoption shift the underlying distribution. For your team, the takeaway is that retrain-from-scratch is not the only governance-acceptable pattern; an adaptive update loop with versioning could meet PSC scrutiny while reducing model staleness. Useful reference when defending model lifecycle KPIs.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2606.24955">arXiv cs.LG</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2606.24775">Agent-Native Memory Systems: benchmark beyond F1 to cost, module trade-offs, and update robustness</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://openai.com/index/how-agents-are-transforming-work">OpenAI Research on Agents at Work: longer task horizons, more complex multi-step workflows</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2606.24947">Supervised RL for DER Coordination: LLM-style pretrain-then-RL applied to grid-edge control</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2606.25996">Autodata Agentic Data Scientist: meta-optimized agents that generate higher-quality synthetic training data</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://huggingface.co/papers/2606.25331">iLLaDA 8B Diffusion LLM: bidirectional masked diffusion trained on 12T tokens, beats LLaDA on BBH and ARC</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2606.24901">Industrial Continual Learning for LLMs: lifecycle view of versioned updates, inheritance, and release governance</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #0d9488;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0d9488;"></span>
+          <a href="https://arxiv.org/abs/2606.24985">Retrieval-Augmented Personalization for Wearables: frozen foundation models plus user-history retrieval for stress detection</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2606.25338">Hybrid-IR Dual-Path RAG: iterative reasoning over fragmented knowledge, pattern reusable for CCB domain QA</a> <span class="src">&middot; arXiv cs.CL</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://huggingface.co/papers/2606.24937">The Hitchhiker&#39;s Guide to Agentic AI: a full-stack practitioner reference</a></h3>
+        <p class="why">This is a soup-to-nuts guide covering the LLM substrate, RLHF and GRPO, reasoning, and production deployment patterns for agent systems. It maps directly to the architectural decisions you face on Noyola Hub and the CCB agent roadmap, and it is the kind of document that pays back twice if you skim it once and revisit sections later. Save it for Saturday coffee.</p>
+        <p class="meta"><a href="https://huggingface.co/papers/2606.24937">Hugging Face Daily Papers</a> &middot; ~20 min read</p>
+      </div>
+
+      <div class="footer">
+        Jun 25, 2026 &middot; curated from 198 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-06-24.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
