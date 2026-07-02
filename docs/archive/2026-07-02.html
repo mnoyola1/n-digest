@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Jul 2 • Agent Governance Papers Land Hard</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Three fresh papers reframe agent runtime safety, context lifecycle, and memory sycophancy in ways that map directly onto Con Ed agent deployments.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Agent Governance Papers Land Hard</h1>
+      <p class="date">Thursday, July 2, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2607.00269">Mnemosyne treats agent-generated actions as untrusted proposals until admission</a></h3>
+          <p class="why">This is the governance model your Con Ed CCB automation needs. Agentic Transaction Processing wraps every LLM or agent action in a deterministic admission gate against a declared constraint set before commit, with reactive repair inside bounds. Map this onto CCB billing adjustments and RPA writebacks and you get an auditable pattern that your regulator and internal risk team will accept.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2607.00269">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2607.01071">MemSyco-Bench shows agent memory quietly makes models sycophantic</a></h3>
+          <p class="why">Retrieved memories push agents to over-align with the user at the cost of factual accuracy. That is a direct threat to Noyola Hub and any Fusion Agent Studio deployment where a rep-facing agent recalls prior interactions. Before rolling memory into customer ops workflows, you want an eval like this in your KPI set so bias does not ship silently into billing decisions.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2607.01071">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2607.00692">Self-GC governs the lifecycle of agent context objects, not just tokens</a></h3>
+          <p class="why">Long-horizon runs in Noyola Hub and CrewAI hit the same wall: chronological pruning drops evidence you needed three steps later. Self-GC indexes tool spans and user turns as first-class objects with a garbage-collection policy. Worth prototyping against your n8n orchestrations where a billing agent burns context on stale tool output and loses the locator it needed to justify an adjustment.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2607.00692">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2607.00334">Gear-Based Runtime Safety For Agents: five execution gears with utility-gated dispatch and provable stability.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2607.00871">Self-Evolving Agents With Anytime-Valid Certificates: modifications only pass an auditable gate against a fixed error budget.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2607.00972">Bayesian Uncertainty For Agentic RAG: propagate planner/evaluator/generator signals to flag failure-prone answers.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2607.00008">SchemaRAG Prunes Large Schemas Dynamically: 8.8% F1 lift, 47% latency cut on structured extraction.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #0891b2;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0891b2;"></span>
+          <a href="https://arxiv.org/abs/2607.00035">Typed JSON Configs Beat Free-Form Scraper Code: constrained agent framework hits 138-task reliability targets.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2607.01084">OpenAgent Benchmark Exposes Tool-Use Fragility: static training collapses under query and tool distribution shifts.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://blog.google/products-and-platforms/products/education/nyc-ai-summit/">Google Hosts NYC Educators On Classroom AI: 150 leaders, worth tracking for N Learn district partnerships.</a> <span class="src">&middot; Google (DeepMind + AI)</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://huggingface.co/papers/2607.00248">Seed2.0 Model Card Drops: targets long-tail knowledge and complex instruction following for real-world tasks.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2607.01224">AutoMem trains memory management itself as a first-class agent skill</a></h3>
+        <p class="why">This one rewards a full read. AutoMem promotes file-system operations to memory actions and lets the model learn what to encode, when to retrieve, and how to organize. The relevance to Noyola Hub and Claude Glasses is direct: both need durable memory that survives thousands of steps or a full day of voice input. Read it Saturday with the Self-GC paper next to it.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2607.01224">arXiv cs.AI</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Jul 2, 2026 &middot; curated from 205 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-07-01.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
