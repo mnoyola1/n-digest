@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Jul 9 • Orchestration Layer Sets Agent Token Costs</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">New research isolates the harness, not the model, as the decisive lever on enterprise agent economics.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Orchestration Layer Sets Agent Token Costs</h1>
+      <p class="date">Thursday, July 9, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2607.06906">Harness design, not model choice, drives enterprise agent token spend</a></h3>
+          <p class="why">This paper swaps only the orchestration layer across six frontier models on 22 locked tasks and shows the harness dominates token economics. That is a direct read on Noyola Hub design and on any Con Ed agent pilot where per-task cost has to justify itself against RPA baselines. Use it as ammunition when vendors pitch model swaps as the cost lever.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2607.06906">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2607.07405">Tool-using agents silently violate policy 78% of the time without deterministic gates</a></h3>
+          <p class="why">The failure mode is a tool call that executes cleanly while breaking a domain rule, with no error surfaced to the agent or user. For a regulated CCB environment where a wrong state means a misbilled customer or a compliance finding, this is the pattern your governance framework has to catch. Deterministic pre-execution gates should be a non-negotiable in any Fusion Agent Studio or CrewAI rollout.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2607.07405">arXiv cs.AI</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #4f46e5;">
+          <div class="tag" style="color: #4f46e5;">EdTech · N Learn</div>
+          <h3 class="headline"><a href="https://openai.com/index/k-12-educators-practical-skills">OpenAI and Walton launch hands-on AI Skills Jams for K-12 educators</a></h3>
+          <p class="why">OpenAI is moving into teacher upskilling with practical classroom workflows, which sets the reference point parents and districts will judge N Learn against. Watch what curriculum shape they push and where Niko can differentiate on safety, adaptive learning, and parental controls rather than compete on brand. Also a distribution channel worth tracking.</p>
+          <p class="meta"><a href="https://openai.com/index/k-12-educators-practical-skills">OpenAI</a> &middot; 3 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://openai.com/index/introducing-gpt-live">OpenAI Ships GPT-Live: new voice model generation now powering ChatGPT Voice, raising the bar for Claude Glasses voice UX.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #0891b2;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0891b2;"></span>
+          <a href="https://huggingface.co/papers/2607.04884">HunyuanOCR-1.5 Lands: lightweight OCR VLM with 6.37x inference speedup, useful for CCB document parsing pipelines.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #0d9488;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0d9488;"></span>
+          <a href="https://arxiv.org/abs/2607.06617">Inertia-1 Opens Wearable Motion Foundations: 18.2M hours of accelerometer pretraining, direct input for ESP32 sensor fusion.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2607.07676">SkillCenter Publishes 216K Agent Skills: largest open source-grounded skill library, reference for Noyola Hub.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2607.07321">EvoSOP Turns Atomic Actions Into SOPs: agents synthesize reusable procedures, cutting reasoning overhead in recurring workflows.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://arxiv.org/abs/2607.06624">AgentLens Evaluates Full Agent Trajectories: production-grade eval beyond pass/fail, worth wiring into your Claude Code loop.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2607.07695">Institutional Red-Teaming for Multi-Agent Safety: deployment rules shift fatality outcomes 22-58 points across model populations.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2607.06623">LLM-Guided Forecasting for Process Industries: semantic factorization for scarce-label time series, applicable to utility load.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2607.07663">A taxonomy of recursive self-improvement across 1,250 papers separates bounded practice from open-ended ambition</a></h3>
+        <p class="why">This survey cuts through the self-refine, self-reward, self-play, self-evolve marketing soup and gives you a two-axis map of what actually improves and how closed the loop is. If Noyola Hub is going to advertise self-evolving behavior, you need this vocabulary to describe what you built and what you did not. Good weekend read to sharpen how you talk to vendors and to your own team.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2607.07663">arXiv cs.AI</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Jul 9, 2026 &middot; curated from 181 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-07-08.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
