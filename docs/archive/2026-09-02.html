@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Sep 2 • Foundation models meet utility forecasting</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">TabPFN beats task-specific electricity price models across three markets, plus new agent safety and memory research worth your attention.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Foundation models meet utility forecasting</h1>
+      <p class="date">Wednesday, September 2, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2609.00089">Foundation models beat task-specific electricity price forecasters in zero-shot tests</a></h3>
+          <p class="why">TabPFN variants outperformed state-of-the-art benchmarks across Germany, Poland, and Spain from 2021-2025 in zero-shot mode. For Con Ed billing forecasting and load prediction work, this is a real vendor question: do you keep investing in custom models, or evaluate foundation models for pricing and demand? Worth putting on the roadmap review.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2609.00089">arXiv cs.LG</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2609.00015">OpenAgentFlow proposes system-level safety boundaries for heterogeneous agent fleets</a></h3>
+          <p class="why">The paper frames agent safety as action governance: deciding whether an agent-generated action commits before it modifies shared state. That maps directly onto the CCB billing automation problem where RPA bots, Fusion agents, and Noyola Hub orchestrators touch the same customer records. Useful reference architecture when you draft the internal governance framework.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2609.00015">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2609.01572">Enterprise consolidates 200+ apps onto one self-hosted LLM using GRPO expert merging</a></h3>
+          <p class="why">Data-residency constraints forced a single model to cover the full corporate request mix across instruction following, function calling, and internal tasks. That fragmented-fleet problem is exactly what a 16-person AI team faces as billing, RPA, and customer ops each pick their own model. The GRPO-per-axis then SLERP-merge pattern is worth a design review before your next procurement cycle.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2609.01572">Hugging Face Daily Papers</a> &middot; 5 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2609.00384">RestoreBench Tests LLM Agents on Power Flow Convergence — chatbot vs single vs multi-agent, 46 cases per grid.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://openai.com/index/gilbert-tobin">Gilbert + Tobin AI Governance Case Study — CEO-led rollout of ChatGPT Enterprise and Codex in a regulated firm.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://simonwillison.net/2026/Sep/1/datasette-mcp/">datasette-mcp 0.2 Ships — rows now array-of-objects, helps weaker models track column mappings via MCP.</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2609.00237">Gated-Memory Routing for Multi-Agent LLMs — compact state beats full-history routing on cost without losing context.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2609.00243">Invalidation Contracts for Agent Memory — version stamps on cached API recovery fixes to survive server-side drift.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #4f46e5;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#4f46e5;"></span>
+          <a href="https://huggingface.co/papers/2609.01591">StudentSim Trains Per-Student LLM Simulators — pooled training plus specialization, useful signal for N Learn tutoring loops.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #0d9488;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#0d9488;"></span>
+          <a href="https://arxiv.org/abs/2609.00441">Voice-First Conversation Coach — low-latency spoken rehearsal system, close cousin to the Claude Glasses interaction model.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://openai.com/index/ai-native-company-workflows">How Basis, Clay, and Exa Turn Workflows Into Agents — practical patterns for onboarding, accounts, and dev integrations.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2609.00106">FAIRY deploys a full-stack agentic engine across a working soybean farm&#39;s full season</a></h3>
+        <p class="why">This is one of the more complete production agent deployments in the pool: APIs across machinery, sensors, drones, satellites, weather, and multi-season history stitched into one system running real operations. The engineering lessons on integrating heterogeneous data sources and calibrated process models translate cleanly to running agents across CCB, meter data, and outage systems. Worth a Saturday read as a reference architecture.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2609.00106">arXiv cs.AI</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Sep 2, 2026 &middot; curated from 206 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-09-01.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
