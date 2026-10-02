@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Oct 2 • Agent harnesses get a governance spine</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Praxa formalizes evidence-bound agent execution, with echoes for how utilities will govern AI actions in billing systems.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Agent harnesses get a governance spine</h1>
+      <p class="date">Friday, October 2, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.00015">Praxa proposes an evidence-bound harness for governed agent execution</a></h3>
+          <p class="why">Praxa separates proposal, authority, dispatch, verified effect, and promotion as distinct claims an agent must earn. That maps directly onto what your Con Ed AI team will need to show auditors before any CrewAI or Fusion Agent Studio workflow touches a CCB billing adjustment. Steal the state model for your governance framework even if you never run the code.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.00015">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.00224">Build2SPARQL benchmarks natural-language querying over building automation knowledge graphs</a></h3>
+          <p class="why">This is the closest academic analog to letting a customer ops rep ask plain English questions against a semantic view of CCB entities. The Brick and ASHRAE 223P framing is adjacent to the ontology work you would need before an Oracle Fusion AI Agent could safely query billing or metering graphs. Useful reference when you scope your own text-to-query pilots.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.00224">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.00648">Incident-Arena benchmarks SRE agents against real Kubernetes faults</a></h3>
+          <p class="why">Twenty tasks with real deployed apps and injected faults is the kind of eval your team should mirror before trusting an agent near production billing jobs. The gap between toy benchmarks and your Cloud Run plus Supabase stack is exactly what this surfaces. Worth citing when procurement asks how you will measure RPA-plus-LLM reliability.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.00648">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2609.38349">MILO Evolves Agent Harnesses Automatically: island-based meta-evolution co-designs the search strategy, relevant for Noyola Hub.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.00372">Causal Intervention Router For Agent Recovery: separates rescue from harm instead of averaging task success.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.00583">Multi-User Multi-Agent Teams Underperform Single Agents: 77 scenarios show coordination failures over shared budgets and calendars.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2609.38193">EHR2Trace Builds Auditable Patient Event Infrastructure: regulated-domain pattern worth borrowing for CCB event sourcing.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://arxiv.org/abs/2609.38332">Hermes Hands Context Control To The Model: contextual reasoning as a learnable path to test-time scaling.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://huggingface.co/papers/2610.01108">AgSpec Speeds Up Coding Agents: retrieval-based speculative decoding tuned to session, workspace, and global corpora.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://openai.com/index/the-den-family-social">ChatGPT Work Case Study At The Den: grant applications in 2 hours, liquor licenses in 3, framing for small-ops ROI.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.00609">Legal Research Bench Scores 13 Frontier Models: 413 expert questions with gold authorities and binary rubrics.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #0d9488; background: #f0fdfa;">
+        <span class="pill" style="background: #0d9488;">Weekend Read</span>
+        <h3 class="headline"><a href="https://huggingface.co/papers/2610.01939">PyRUA-Lean cuts robot agent tokens 65 percent while raising success 14 percent</a></h3>
+        <p class="why">The paper couples code-execution with selective observation so a VLM agent only pulls images and state when it actually needs them. The pattern is directly transferable to Claude Glasses: do not stream frames on every tick, let the agent request them. Worth a Saturday read to sketch an ESP32-friendly observation policy for your wearable prototype.</p>
+        <p class="meta"><a href="https://huggingface.co/papers/2610.01939">Hugging Face Daily Papers</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Oct 2, 2026 &middot; curated from 206 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-10-01.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
