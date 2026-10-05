@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Oct 5 • GPT-6 Ships, Meter Data Gets Serious</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">OpenAI publishes a practical GPT-6 selection guide while new research tackles the messy meter data your billing models actually see.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">GPT-6 Ships, Meter Data Gets Serious</h1>
+      <p class="date">Monday, October 5, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://openai.com/index/practical-guide-building-gpt-6">OpenAI publishes a practical selection guide for the GPT-6 family</a></h3>
+          <p class="why">This is the kind of vendor doc you forward to your team before the next roadmap review. It covers model choice, reasoning-effort tuning, tool coordination, and production workflow prep. For the Con Ed AI team weighing GPT-6 against Claude and Oracle Fusion agents for billing and CCB automation, it sets a clearer baseline for cost-per-task and when to escalate reasoning effort.</p>
+          <p class="meta"><a href="https://openai.com/index/practical-guide-building-gpt-6">OpenAI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.02397">Validated data onboarding fixes defective U.S. building meter data before forecasting</a></h3>
+          <p class="why">Twelve U.S. buildings, hourly data, controlled defect injection, and a repair pipeline that runs at forecast time. This is exactly the pre-model layer your billing automation and demand workflows need before any LLM or RPA bot touches CCB. Steal the defect taxonomy (missing reads, frozen sensors, unit shifts by 100x) as a checklist for your own data-quality scorecard.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.02397">arXiv cs.LG</a> &middot; 5 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #475569;">
+          <div class="tag" style="color: #475569;">AI Governance</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/">Simon Willison argues every AI service needs default hard budget caps</a></h3>
+          <p class="why">A soft warning email at midnight does not protect you when a CrewAI loop goes sideways. Willison makes the case for hard cutoffs on every pay-per-use API. Bake this into Noyola Hub and N Learn now, and add it to your vendor procurement checklist for Con Ed. Any AI service without a hard-cap primitive should be flagged in governance review.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/">Simon Willison</a> &middot; 3 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://openai.com/index/chatham-financial">Chatham Financial Case: GPT-5.6 Plus Codex Cut Trade Validation From 30 Minutes To Under 4</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2610.02256">TRACE Benchmark: 7,300 Zone-Day Electricity Price Forecasts Pairing Prices With Official Operational Text</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #2563eb;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#2563eb;"></span>
+          <a href="https://arxiv.org/abs/2610.02504">HXAI: Hierarchical Privacy-Preserving XAI For Household Energy Explanations Without Leaking Sensitive Data</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.02396">Inherit-MAS: Test-Time Workflow And Execution Inheritance For Multi-Agent Systems, Useful Pattern For CrewAI Setups</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.02351">DeReAct: External Critic And Context Manager Lift Weaker Agent Models 4-7 Points On GAIA And SWE-Bench</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://arxiv.org/abs/2610.02510">CourseChat: On-Prem Multi-Course RAG Tutor On FastAPI Plus Ollama, Close To N Learn&#39;s Deployment Shape</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.02404">Trained Agentic Context Management: 35B Model With 8K Context Matches GPT-5.4 At 1M On Long Docs Via Self-Call Tool</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2610.02281">AI Risk Observatory: UK Annual-Report AI Risk Mentions Jumped From 2.8% To 41.2% Between 2020 And 2025</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2610.02525">MIRA separates meta-reasoning from execution for long-horizon research agents</a></h3>
+        <p class="why">Hierarchical architecture where an outer-loop meta-reasoner curates context and issues work orders, and a fresh inner-loop executor carries each one out. This is the pattern Noyola Hub keeps circling around, and the paper gives you a working vocabulary (persistent research record, work order, episode termination) plus results without policy training. Worth a weekend read before you refactor your orchestrator.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2610.02525">arXiv cs.AI</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Oct 5, 2026 &middot; curated from 190 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-10-02.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
