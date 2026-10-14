@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Oct 14 • Anthropic ditches Git, Gemini 4 ships</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Anthropic replaced Git to handle 30K daily merges, Gemini 4 Argon launches at GPT-6 Sol pricing, and a new paper calibrates agent confidence against eventual outcomes.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Anthropic ditches Git, Gemini 4 ships</h1>
+      <p class="date">Wednesday, October 14, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #059669;">
+          <div class="tag" style="color: #059669;">Developer Tools</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/">Anthropic replaced Git to handle 30K daily merges</a></h3>
+          <p class="why">Anthropic went from 2,500 to 30,000 merges per day in four months and built a custom source control system called Antique. For your Con Ed AI team shipping RPA and billing automation, this is a preview of what happens when Claude-assisted coding velocity outpaces your tooling. Worth factoring into how you plan PR review and CI capacity as Claude Code usage grows across the 16-person team.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/">Simon Willison</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Oct/13/llm-gemini/">Gemini 4 Argon launches at $2/$10 per million, doubles December 1</a></h3>
+          <p class="why">Argon matches GPT-6 Sol pricing and undercuts Claude Opus 5.5 by half, but Google has telegraphed a 2x hike on December 1. For vendor roadmap and procurement, this is a short arbitrage window to benchmark Argon against Claude on CCB billing-explanation prompts before the price resets. Also a data point for your Claude-dominant stack: Google is pricing to pull enterprise workloads.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Oct/13/llm-gemini/">Simon Willison</a> &middot; 2 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://huggingface.co/papers/2610.18614">Paper: calibrating agent confidence against eventual task outcomes, not per-step correctness</a></h3>
+          <p class="why">The method uses GRPO rollouts to score each step&#39;s self-reported confidence against whether the full episode succeeded. For Noyola Hub and any CrewAI orchestration you run against CCB, this is exactly the signal you need to decide when to abstain or escalate to a human CSR mid-workflow. Direct input for your governance story on autonomous billing actions.</p>
+          <p class="meta"><a href="https://huggingface.co/papers/2610.18614">Hugging Face Daily Papers</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://huggingface.co/papers/2610.18206">SWE-Misbehavior Benchmark Catalogs 11 Boundary Violations In Coding Agents - useful lens for RPA safety reviews.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://www.theverge.com/news/1010365/shopify-opens-its-catalog-up-to-more-ai-agents">Shopify Opens Catalog To More Shopping Agents - agentic commerce patterns worth watching for self-service billing analogs.</a> <span class="src">&middot; The Verge AI</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://simonwillison.net/2026/Oct/12/llm-meta-ai/">Meta Muse Wonder Ships Monthly Cadence, Matches GPT-6.1 Sol - Meta now a credible frontier vendor.</a> <span class="src">&middot; Simon Willison</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic">OpenAI Publishes EU Agentic Adoption Analysis - early signal for how regulators frame agent deployment.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #db2777;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#db2777;"></span>
+          <a href="https://huggingface.co/papers/2602.05758">LongR Uses Dense Utility Rewards For Long-Context Reasoning - interleaves think-and-read over long documents.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2610.18092">LifeSearch Benchmarks Deep Research Agents On Real Productivity Tasks - 4K rubrics, EN and CN.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://huggingface.co/papers/2610.16354">Self-Distillation With Verbal Regularization Curbs Shortcut Reasoning - training trick for smaller specialized models.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #475569; background: #f1f5f9;">
+        <span class="pill" style="background: #475569;">Weekend Read</span>
+        <h3 class="headline"><a href="https://huggingface.co/papers/2610.18206">SWE-Misbehavior: a taxonomy and 7.4K-sample benchmark for boundary violations in coding agents</a></h3>
+        <p class="why">This is the kind of structured safety framework your governance posture needs as RPA and coding agents touch CCB and production systems. It covers code generation, file management, and system interaction violations with an automated eval protocol. Worth a weekend read to lift categories directly into your Con Ed AI acceptance criteria and vendor security questionnaires.</p>
+        <p class="meta"><a href="https://huggingface.co/papers/2610.18206">Hugging Face Daily Papers</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Oct 14, 2026 &middot; curated from 76 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-10-13.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
