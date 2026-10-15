@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Oct 15 • Anthropic Hits $16.8B, MCP Metadata Matters</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">Anthropic Q3 revenue climbs to $16.8B with $1.70 earned per $1 of compute, plus new research on MCP tool selection and portable agentic RAG for customer support.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">Anthropic Hits $16.8B, MCP Metadata Matters</h1>
+      <p class="date">Thursday, October 15, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #d97706;">
+          <div class="tag" style="color: #d97706;">Foundation Models</div>
+          <h3 class="headline"><a href="https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/">Anthropic Q3 revenue hits $16.8B with $1.70 per $1 of compute spend</a></h3>
+          <p class="why">Anthropic&#39;s unit economics are now vendor-decision material. $1.70 revenue per $1 of compute and 11% adjusted operating margins signal pricing stability for Claude API, which backs Claude Glasses, Noyola Hub, and anything you pitch internally that depends on Anthropic sticking around. The distillation crackdown also matters: expect tighter ToS enforcement if your team ever considers training on Claude outputs.</p>
+          <p class="meta"><a href="https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/">Simon Willison</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #db2777;">
+          <div class="tag" style="color: #db2777;">RAG &amp; Prompting</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.14428">Portable skills beat heavy RAG pipelines for customer support deployments</a></h3>
+          <p class="why">This is a deployment case study, not a benchmark paper. The authors replace chunking, rerankers, and bespoke agentic RAG with a natural-language instruction plus a lightweight skill, grounded in SOPs and policy docs. That maps directly onto your CCB specialist workflows where resolution steps must trace back to policy. Worth testing against whatever retrieval stack your team is currently scoping for billing dispute automation.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.14428">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #059669;">
+          <div class="tag" style="color: #059669;">Developer Tools</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.14334">MCP parameter schemas influence tool selection before any call is made</a></h3>
+          <p class="why">Study of 367K MCP tools finds that schema shape, not just names and descriptions, drives which tool an LLM picks. For Noyola Hub and any CrewAI/MCP server you expose to Claude, this means tool authoring is now a measurable design discipline. Before scaling your orchestrator, run controlled schema interventions on your own tools so routing stays predictable as the catalog grows.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.14334">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #059669;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#059669;"></span>
+          <a href="https://arxiv.org/abs/2610.14576">Iterate on LLM, Serve on SLM: develop behavior on frontier models, deploy on 5-40x cheaper small models.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.14209">Cloud-Written, Edge-Interpreted Agents: SLMs handle private data lookups inside cloud-authored programs.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://openai.com/index/third-moment-research">OpenAI Ships GPT-6 Astra and Sol: Third Moment Research runs 10,000 agents for 36+ hours.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://huggingface.co/papers/2610.19698">RuleTrek Benchmark Lands: multi-domain agentic rule reasoning across distributed scenario files.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.14180">Open Weights Match Closed Frontier on Security Agents: at under 10% of the cost, given enough turns.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://arxiv.org/abs/2610.14115">Silent Failures in Agentic Data Science: current evals miss data leakage and bad validation.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.14636">PEARL Fixes Multi-Turn Credit Assignment: locates first divergence between success and failure branches.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #475569;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#475569;"></span>
+          <a href="https://huggingface.co/papers/2610.19422">AgentSafeEvo Co-Evolves Attacker and Defender: RL framework targeting tool-use prompt injection.</a> <span class="src">&middot; Hugging Face Daily Papers</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2610.14625">A unified taxonomy of recursive self-improvement across nine design dimensions</a></h3>
+        <p class="why">Save this for Saturday. It maps RSI methods across update targets, organization, schedule, and feedback into one design space, which is exactly the lens you need before adding self-improvement loops to Noyola Hub. Reading it alongside the related ClawLoop and Harness^2 papers will sharpen how you scope what agents in your stack should and should not be allowed to modify.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2610.14625">arXiv cs.AI</a> &middot; ~18 min read</p>
+      </div>
+
+      <div class="footer">
+        Oct 15, 2026 &middot; curated from 203 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-10-14.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
