@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>AI Digest • Oct 19 • MCP Overrides Give Humans Agent Control</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    supported-color-schemes: light dark;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    -webkit-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .preheader {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    color: transparent;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    mso-hide: all;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0 0 24px;
+  }
+  h2.section {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1d1d1f;
+    font-weight: 700;
+    margin: 30px 0 14px;
+  }
+  /* --- story card (What Matters Today) --- */
+  .story {
+    background: #f9fafb;
+    border-left: 4px solid #71717a;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #71717a;
+    margin: 0 0 8px;
+  }
+  h3.headline {
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0 0 8px;
+  }
+  h3.headline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  h3.headline a:hover {
+    border-bottom-color: #1d1d1f;
+  }
+  p.why {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333336;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #6e6e73;
+    margin: 0;
+  }
+  .meta a {
+    color: #6e6e73;
+    text-decoration: none;
+    border-bottom: 1px dotted #b7b7bb;
+  }
+  .meta a:hover { border-bottom-style: solid; }
+
+  /* --- quick hits --- */
+  .quick-hits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quick-hits li {
+    position: relative;
+    padding: 0 0 0 16px;
+    margin: 0 0 11px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333336;
+  }
+  .quick-hits li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #71717a;
+  }
+  .quick-hits li a {
+    color: #0a0a0a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .quick-hits li a:hover { text-decoration: underline; }
+  .quick-hits .src {
+    color: #8a8a8e;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* --- deeper look --- */
+  .deeper {
+    position: relative;
+    background: #fef3f2;
+    border-left: 4px solid #b45309;
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    margin-top: 4px;
+  }
+  .deeper .pill {
+    display: inline-block;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin: 0 0 10px;
+  }
+  .deeper h3.headline { margin-bottom: 8px; }
+
+  /* --- footer --- */
+  .footer {
+    font-size: 12px;
+    color: #8a8a8e;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5ea;
+    line-height: 1.5;
+  }
+  .footer a { color: #6e6e73; text-decoration: none; border-bottom: 1px dotted #b7b7bb; }
+
+  /* --- category tint classes (applied as additional classes for dark mode overrides) --- */
+  /* Light-mode colors are applied via inline style attributes on the elements themselves
+     so they survive Gmail's CSS stripping. The classes below exist so the dark-mode
+     media query can re-tint them without fighting inline styles via !important. */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; }
+    .card { background: #1c1c1e; box-shadow: none; }
+    .title, h3.headline, h3.headline a { color: #f5f5f7 !important; }
+    .eyebrow, .date, .footer, .quick-hits .src, .meta, .meta a { color: #9a9a9e !important; }
+    p.why, .quick-hits li { color: #d1d1d6 !important; }
+    .quick-hits li a { color: #f5f5f7 !important; }
+    h2.section { color: #f5f5f7 !important; }
+    .story { background: #2a2a2c !important; }
+    .deeper { background: #3a2820 !important; }
+    .footer { border-top-color: #2c2c2e; }
+    .footer a { color: #9a9a9e !important; border-bottom-color: #3a3a3c; }
+    .meta a { border-bottom-color: #3a3a3c; }
+  }
+</style>
+</head>
+<body>
+  <span class="preheader">A new protocol lets operators inject binding, schema-validated directives into LLM agents that actually persist across planning cycles.</span>
+  <div class="wrap">
+    <div class="card">
+      <p class="eyebrow">AI Digest</p>
+      <h1 class="title">MCP Overrides Give Humans Agent Control</h1>
+      <p class="date">Monday, October 19, 2026</p>
+
+      <h2 class="section">What Matters Today</h2>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.22373">Structured Authority Injection adds typed MCP overrides for persistent human control of agents</a></h3>
+          <p class="why">This is the governance primitive your Noyola Hub orchestrator has been missing. Free-text operator instructions decay inside long agent contexts, which is exactly the risk that keeps billing-adjacent agents off Con Ed&#39;s production path. Typed, schema-validated MCP overrides with a ranked authority context give you an auditable kill-switch and constraint layer you can defend to procurement and governance.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.22373">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #2563eb;">
+          <div class="tag" style="color: #2563eb;">Enterprise AI · Utilities</div>
+          <h3 class="headline"><a href="https://openai.com/index/itau-generative-ai">Itau rolls out customer-facing generative AI with a formal governance platform in a heavily regulated sector</a></h3>
+          <p class="why">Itau pairing a conversational interface with the IARA governance platform is the closest analog to what Con Ed Customer Operations will have to justify to regulators. The pattern worth stealing is governance-as-product, not governance-as-PDF. Useful reference when you socialize your billing automation roadmap and vendor choices with risk and legal.</p>
+          <p class="meta"><a href="https://openai.com/index/itau-generative-ai">OpenAI</a> &middot; 3 min read</p>
+        </div>
+        <div class="story" style="border-left-color: #7c3aed;">
+          <div class="tag" style="color: #7c3aed;">Agentic Systems</div>
+          <h3 class="headline"><a href="https://arxiv.org/abs/2610.22869">MS-Eval benchmarks main-agent delegation and sub-agent orchestration over MCP</a></h3>
+          <p class="why">You need an honest way to score whether Noyola Hub&#39;s main-agent plus specialized sub-agents actually beats a single CrewAI chain for CCB tasks. MS-Eval gives you delegation and orchestration metrics plus a composite MSQ index you can adapt to billing workflows. Pair it with the SAI control layer above and you have an eval harness you can show your 16-person team on Monday.</p>
+          <p class="meta"><a href="https://arxiv.org/abs/2610.22869">arXiv cs.AI</a> &middot; 4 min read</p>
+        </div>
+
+      <h2 class="section">Quick Hits</h2>
+      <ul class="quick-hits">
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22561">FRACTAL Architecture: self-similar five-component orchestration pattern with formal communication and convergence bounds.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22740">R2Orch Self-Play Loop: recursive orchestrator improvement that picks its own training tasks from rollout difficulty.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22915">Reward Engine For Tool Agents: auto-builds testcases and rubrics when no ground-truth reward exists.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22661">Edit Discovery In Human-AI Loops: deciding which agent outputs are worth sending to a costly editor for correction.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22448">Lean4AgenticRL: multi-level process rewards (toolcall, workflow, outcome) for software agents via Lean4 formalization.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://openai.com/index/benefit-street-partners">Benefit Street Uses Codex: credit analysts shipping internal valuation tools with LLM code review in the loop.</a> <span class="src">&middot; OpenAI</span>
+        </li>
+        <li style="--dot: #7c3aed;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#7c3aed;"></span>
+          <a href="https://arxiv.org/abs/2610.22469">LLM Planning vs Formal Semantics: PDDL-grounded tests show end-to-end success rates overstate real planning competence.</a> <span class="src">&middot; arXiv cs.AI</span>
+        </li>
+        <li style="--dot: #d97706;">
+          <span aria-hidden="true" style="position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#d97706;"></span>
+          <a href="https://arxiv.org/abs/2610.22467">Recursive Self-Distillation Drifts Unsafe: benign self-training loops can progressively misalign a safe base model.</a> <span class="src">&middot; arXiv cs.LG</span>
+        </li>
+      </ul>
+
+      <h2 class="section">Worth a Deeper Look This Week</h2>
+      <div class="deeper" style="border-left-color: #7c3aed; background: #f5f3ff;">
+        <span class="pill" style="background: #7c3aed;">Weekend Read</span>
+        <h3 class="headline"><a href="https://arxiv.org/abs/2610.22466">Harness-Delta Attribution separates real agent gains from benchmark overfitting and extra inference compute</a></h3>
+        <p class="why">When you evaluate CrewAI or n8n harness tweaks for CCB automation, how much of the lift is real versus benchmark memorization or just burning more tokens? HDA proposes a protocol to decompose harness gains into overfitting, test-time scaling, and residual generalizable improvement. Worth a Saturday read before your next vendor bake-off or internal eval review.</p>
+        <p class="meta"><a href="https://arxiv.org/abs/2610.22466">arXiv cs.AI</a> &middot; ~15 min read</p>
+      </div>
+
+      <div class="footer">
+        Oct 19, 2026 &middot; curated from 187 items reviewed
+&middot; <a href="https://mnoyola1.github.io/n-digest/archive/2026-10-16.html">yesterday&rsquo;s digest</a>      </div>
+    </div>
+  </div>
+</body>
+</html>
